@@ -19,3 +19,5 @@ Base system is derived from the template image.
 Base system is derived from the template image.
 
 ### Service
+* TFTP server
+* PXE loader
