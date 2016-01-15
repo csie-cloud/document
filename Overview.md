@@ -9,4 +9,5 @@ In our testing environment, there are 4 servers, separated in 2 parted.
 
 ### Creator
 * Ability to deploy VM hosts and their corresponded clients.
+* Contain the one and the only VM template image.
 * Hosting the Puppet Master.
