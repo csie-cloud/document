@@ -1,5 +1,6 @@
 # Host
-Host the following enlisted images.
+* Host the following enlisted images.
+* Enable share folder.
 
 # Template Image
 ### Operating System
