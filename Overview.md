@@ -1,0 +1,1 @@
+In our testing environment, there are 4 servers.
