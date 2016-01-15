@@ -6,3 +6,6 @@ In our testing environment, there are 4 servers, separated in 2 parted.
 2. Deployment
  * Creator
  * Controller
+
+### Creator
+Ability to deploy VM hosts and their corresponded clients.
