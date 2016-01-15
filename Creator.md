@@ -1,6 +1,12 @@
 # Host
+### Operating System
+CentOS 7, kernel default (3.10)
+
+### Abilities
 * Using KVM to host the following enlisted images.
 * Enable share folder.
+
+### Service
 * sshd
 
 # Template Image
