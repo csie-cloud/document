@@ -1,3 +1,6 @@
+# Host
+Host the following enlisted images.
+
 # Template Image
 ### Operating System
 CentOS 7, kernel default (3.10) 
