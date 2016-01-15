@@ -8,4 +8,5 @@ In our testing environment, there are 4 servers, separated in 2 parted.
  * Controller
 
 ### Creator
-Ability to deploy VM hosts and their corresponded clients.
+* Ability to deploy VM hosts and their corresponded clients.
+* Hosting the Puppet Master.
