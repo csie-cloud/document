@@ -1,5 +1,4 @@
 # Template Image
-
 ### Operating System
 CentOS 7, kernel default (3.10) 
 
@@ -9,6 +8,14 @@ CentOS 7, kernel default (3.10)
 * puppet client
 
 # Puppet VM Image
+### Operating System
 Base system is derived from the template image.
 
+### Service
+* Puppet Master
+
 # Netboot VM Image
+### Operating System
+Base system is derived from the template image.
+
+### Service
