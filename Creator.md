@@ -1,5 +1,5 @@
 # Host
-* Host the following enlisted images.
+* Using KVM to host the following enlisted images.
 * Enable share folder.
 
 # Template Image
