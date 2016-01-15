@@ -13,3 +13,4 @@ In our testing environment, there are 4 servers, separated in 2 parted.
 * Ability to deploy VM hosts and their corresponded clients.
 * Contain the one and the only VM template image.
 * Hosting the Puppet Master.
+* TFTP host, PXE daemon, in order to grant ability for remote installations.
