@@ -19,10 +19,13 @@ The design of production enviroment can be considered in following aspects:
 
 ### Auto-Deployment
 
-We use Creator server to achieve auto deployment. For example, if you want to add a compute node in the future, what you have to do is 
- 1.  Go to 215 to plugin correct network cable.
- 2.  Login Creator server.
- 2.  Run a few commands.
+We use Creator server to achieve auto deployment. The goal is to grow up a cloud as simple as possible. Once you get the configuration file, you can easily build a cloud using Creator. The PXE service automate the installation of any kind of host. The puppet master service facilitate the configuration management. We hope in the end, if you want to build/rebuild a cloud, the only things you have to do is 
+ 1.  Go to 215 to plugin network cables correctly.
+ 2.  Install OS on a server, which will become the creator of the cloud.
+ 3.  Install KVM.
+ 4.  Copy template images, PXE and puppet master VM images to that server.
+ 5.  Run PXE and Puppet VM.
+ 6.  Execute some commands.
 
 When you want to deploy an experiented configuration, what you have to do is
  1.  Login Creator.
