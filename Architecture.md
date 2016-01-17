@@ -6,7 +6,7 @@ The architecture is designed to utilize the resources we have in maximum and pro
 
 ## Development Enviroment
 
-Developemet enviroment is a miniature of production one. This system is consisted of two physical server. One for Creator, the server that provides auto-deployment. The other one host lots of virtual machines to simulate the production enviroment. The simulated production enviroment enable us to experiment new configuration or new feature without under the risk of crash production enviromment. And the isolated Creator server can let us experiment auto deployment one bare phisical machine moreover.
+Developemet enviroment is a miniature of production one where we can do experiment freely. This system is consisted of two physical server. One for Creator, the server that provides auto-deployment. The other one host lots of virtual machines to simulate the production enviroment. The simulated production enviroment enable us to experiment new configuration or new feature without under the risk of crash production enviromment. And the isolated Creator server can let us experiment auto deployment one bare phisical machine moreover.
 ![](http://csie-cloud.github.io/wiki/images/dev-env.svg)
 
 ## Production Enviroment 
