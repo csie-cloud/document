@@ -61,3 +61,20 @@ Maybe it should be off-line when not used.
 
 ### High-Availability
 Each important service, like controller, storage is planned to have replica. If servers that face public network crash, pacemaker will detect its replica's failure, and start some mechanism. And for the service accessed by internal network, the HAProxy on the controller will auto balance the load of API-service like Nova-api, Cinder-api and so on.
+
+## Storage 
+Since deciding storage solution is not urgent for now, we have not look deeply into it. Therefore, following is some preliminary plan.
+
+### Block Storage
+Using Ceph to achieve high scalability. 
+
+We can use two low-end servers to constitute the backend of Ceph. The two servers are duplication of each other. And each of them use RAID5. Then data stored in them will be very safe.
+
+Ceph seems to support snapshot, therefore backup may not be an issue. The snapshot can also be stored in object storage.
+
+If the inter-storage-server communication is too chatty, then maybe we can simply connect them with network cable. 
+
+### Object Storage
+This service may just for our inner usage, like keeping huge amount of log, server backup.
+
+Since not going to open for general users, NAS should have sufficient performance.
