@@ -8,6 +8,8 @@ But note
 * The maximum baud rate is 57600
 * To start serial console, run `systemctl enable serial-getty@ttyS1`
 * COM1 corresponds to ttyS0, and COM2 corresponds to ttyS1.
+* To setup grub, set `GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS1,57600n8"`
+ in`/etc/default/grub`. And run `grub2-mkconfig -o /boot/grub2/grub.cfg`.
 
 # How to use IPMI
 
