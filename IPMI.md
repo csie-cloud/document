@@ -2,6 +2,11 @@
 
 # How to set up IPMI
 
+Refer to this [tutorial](http://www.alleft.com/sysadmin/ipmi-sol-inexpensive-remote-console/).
+
+But note
+* The maximum baud rate is 57600
+
 # How to use IPMI
 
 ## Access Serial Console
