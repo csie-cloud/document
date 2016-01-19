@@ -24,6 +24,16 @@ The service `serial-getty@ttyS1` will automatically get hooked up when the DEFAU
 
 # How to use IPMI
 
-## Access Serial Console
-
-`ipmitool -I lanplus -H [ip] -U ipmi-admin -P [password] sol activate`
+## Access serial console
+* Enable/Disable the SOL ability to the user on specified channel (controlled by IRQ).
+```
+ipmitool -H [ip] -U [username] -P [password] payload status
+ipmitool -H [ip] -U [username] -P [password] payload enable 1
+ipmitool -H [ip] -U [username] -P [password] payload disable 1
+```
+The configurations above assume that only 1 channel is valid here, and only 1 user with ID 1 is allowed. The user ID can be viewed when the `status` command is issued.
+* Start/Stop the console, only 1 user at a time, deactivate the SOL session when finished the operation.
+```
+ipmitool -I lanplus -H [ip] -U [username] -P [password] sol activate
+ipmitool -I lanplus -H [ip] -U [username] -P [password] sol deactivate
+```
