@@ -13,30 +13,27 @@ Please check [here](http://www.alleft.com/sysadmin/ipmi-sol-inexpensive-remote-c
 3. Configure the LAN parameters, i.e. static IP address, netmask, gateway address, _user access_.
 4. To enable SOL, reboot and use `F2` to enter the setup page.
 5. Setup the serial port multiplexers on the motherboard properly, avoid conflicts here.
-6. To have the GRUB messages and boot time messages being dump to the serial console as well, add the following lines to `/etc/default/grub`, please modify the ttySx to the corresponding port in step 5.
-```
-GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS1,57600n8"
-GRUB_TERMINAL=serial
-GRUB_SERIAL_COMMAND="serial --speed=57600 --unit=0 --word=8 --parity=no --stop=1"
-```
-The service `serial-getty@ttyS1` will automatically get hooked up when the DEFAULT parameters are sent to the kernel during the start up.
+6. To have the GRUB messages and boot time messages being dump to the serial console as well, add the following lines to `/etc/default/grub`, please modify the `ttySx` to the corresponding port in step 5.  
+ `GRUB_CMDLINE_LINUX_DEFAULT="console=tty0 console=ttyS1,57600n8"`  
+ `GRUB_TERMINAL=serial`  
+ `GRUB_SERIAL_COMMAND="serial --speed=57600 --unit=0 --word=8 --parity=no --stop=1"`  
+ The service `serial-getty@ttyS1` will automatically get hooked up when the DEFAULT parameters are sent to the kernel during the start up.
 7. Run `grub2-mkconfig -o /boot/grub2/grub.cf` after finish modifying the grub template.
 
-# How to use IPMI
+### Note
+* The maximum valid baud rate for the IPMI is 57600bps, though the interface provides the options for 115200bps.
+* Remember to regenerate the `grub.cfg` through GRUB utilities, and _never_ manually modify GRUB related files.
 
+# How to use IPMI
 ## Access serial console
-* Enable/Disable the SOL ability to the user on specified channel (controlled by IRQ).
-```
-ipmitool -H [ip] -U [username] -P [password] payload status
-ipmitool -H [ip] -U [username] -P [password] payload enable 1
-ipmitool -H [ip] -U [username] -P [password] payload disable 1
-```
-The configurations above assume that only 1 channel is valid here, and only 1 user with ID 1 is allowed. The user ID can be viewed when the `status` command is issued.
-* Start/Stop the console, only 1 user at a time, deactivate the SOL session when finished the operation.
-```
-ipmitool -I lanplus -H [ip] -U [username] -P [password] sol activate
-ipmitool -I lanplus -H [ip] -U [username] -P [password] sol deactivate
-```
+* Enable/Disable the SOL ability to the user on specified channel (controlled by IRQ).  
+ `ipmitool -H [ip] -U [username] -P [password] payload status`  
+ `ipmitool -H [ip] -U [username] -P [password] payload enable 1`  
+ `ipmitool -H [ip] -U [username] -P [password] payload disable 1`  
+ The configurations above assume that only 1 channel is valid here, and only 1 user with ID 1 is allowed. The user ID can be viewed when the `status` command is issued.
+* Start/Stop the console, only 1 user at a time, deactivate the SOL session when finished the operation.  
+ `ipmitool -I lanplus -H [ip] -U [username] -P [password] sol activate`  
+ `ipmitool -I lanplus -H [ip] -U [username] -P [password] sol deactivate`  
 
 ## Control the power
 It' rather straight forward, using the following commands.
