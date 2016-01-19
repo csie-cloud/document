@@ -1,5 +1,5 @@
 # What can IPMI do
-IPMI stands for _Intelligent Platform Management Interface_ -- it's a standard for monitoring and controlling the server remotely and independently through the BMC (Baseboard Management Controller). We primarily use the IPMI to perform the following task:
+IPMI stands for _Intelligent Platform Management Interface_ -- it's a standard for monitoring and controlling the server remotely and independently through the BMC (Baseboard Management Controller). We primarily use the IPMI to perform the following task: 
 1. Control the power status remotely, i.e. reset, power on.
 2. View the system log that's stored in the on-board chip regarding in-chassis sensors.
 3. Access the machine without the primary NIC online.
