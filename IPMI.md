@@ -37,3 +37,14 @@ The configurations above assume that only 1 channel is valid here, and only 1 us
 ipmitool -I lanplus -H [ip] -U [username] -P [password] sol activate
 ipmitool -I lanplus -H [ip] -U [username] -P [password] sol deactivate
 ```
+
+## Control the power
+It' rather straight forward, using the following commands.
+```
+ipmitool -H [ip] -U [username] -P [password] power status
+ipmitool -H [ip] -U [username] -P [password] power on
+ipmitool -H [ip] -U [username] -P [password] power off
+ipmitool -H [ip] -U [username] -P [password] power reset
+ipmitool -H [ip] -U [username] -P [password] power soft
+```
+Please differentiate between hard reset and soft reset, try not to use the former one.
