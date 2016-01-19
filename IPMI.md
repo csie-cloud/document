@@ -7,6 +7,7 @@ Refer to this [tutorial](http://www.alleft.com/sysadmin/ipmi-sol-inexpensive-rem
 But note
 * The maximum baud rate is 57600
 * To start serial console, run `systemctl enable serial-getty@ttyS1`
+* COM1 corresponds to ttyS0, and COM2 corresponds to ttyS1.
 
 # How to use IPMI
 
