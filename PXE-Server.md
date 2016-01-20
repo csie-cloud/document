@@ -35,7 +35,54 @@ default-lease-time 600;
 max-lease-time 7200;
 
 # PXE SERVER IP
-next-server 172.16.217.140; #  DHCP server ip
+next-server 172.16.217.140; #  DHCP server ip ( Creator-Dev )
 filename "pxelinux.0";
 }
+````
+
+Enable tftp server. In `/etc/xinetd.d/tftp`
+````
+disable                 = no
+server_args		= -s /tftpboot
+````
+
+Set up TFTP server boot files
+````
+mkdir -p /tftpboot
+chmod 777 /tftpboot
+cp -v /usr/share/syslinux/pxelinux.0 /tftpboot
+cp -v /usr/share/syslinux/menu.c32 /tftpboot
+cp -v /usr/share/syslinux/memdisk /tftpboot
+cp -v /usr/share/syslinux/mboot.c32 /tftpboot
+cp -v /usr/share/syslinux/chain.c32 /tftpboot
+mkdir /tftpboot/pxelinux.cfg
+mkdir -p /tftpboot/netboot/
+````
+
+Mount image to ftp (with SELinux on)
+````
+mount -o context=system_u:object_r:public_content_t:s0 /var/tftp/CentOS-7-x86_64-Minimal-1511.iso pub/
+````
+
+Prepare image to tftp
+````
+cp /var/ftp/pub/images/pxeboot/vmlinuz /tftpboot/netboot/
+cp /var/ftp/pub/images/pxeboot/initrd.img /tftpboot/netboot/
+````
+
+Create PXE menu in `/tftpboot/pxelinux.cfg/default`
+````
+default menu.c32
+prompt 0
+timeout 30
+MENU TITLE unixme.com PXE Menu
+LABEL centos7_x64
+MENU LABEL CentOS 7 X64
+KERNEL /netboot/vmlinuz
+APPEND  initrd=/netboot/initrd.img  inst.repo=ftp://172.16.217.140/pub  ks=ftp://172.16.217.140/ks.cfg
+````
+
+Use anaconda-ks.cfg as kickstart config file. 
+````
+cp /root/anaconda-ks.cfg /var/ftp/ks.cfg
 ````
