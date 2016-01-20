@@ -23,6 +23,7 @@ Please check [here](http://www.alleft.com/sysadmin/ipmi-sol-inexpensive-remote-c
 ### Note
 * The maximum valid baud rate for the IPMI is 57600bps, though the interface provides the options for 115200bps.
 * Remember to regenerate the `grub.cfg` through GRUB utilities, and _never_ manually modify GRUB related files.
+* IPMI may only works on NIC1!!
 
 # How to use IPMI
 ## Access serial console
