@@ -42,4 +42,15 @@ if [ "${1}" = "del" ]; then
 fi
 ````
 
+# Share directory
+
+Use `virsh-edit [domain name]` to add
+````
+<filesystem type='mount' accessmode='mapped'>
+ <source dir='/tmp/shared'/> 
+ <target dir='tag'/>
+</filesystem>
+````
+
+
 
