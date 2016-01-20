@@ -44,13 +44,21 @@ fi
 
 # Share directory
 
-Use `virsh-edit [domain name]` to add
+[Reference](http://rabexc.org/posts/p9-setup-in-libvirt)
+
+Use `virsh-edit [domain name]` to add (in devices section)
 ````
-<filesystem type='mount' accessmode='mapped'>
+<filesystem type='mount' accessmode='passthrough'>
  <source dir='/tmp/shared'/> 
  <target dir='tag'/>
 </filesystem>
 ````
+
+To mount the directory, 
+````
+mount -t 9p -o trans=virtio,version=9p2000.L tag /mnt/shared/
+````
+
 
 
 
