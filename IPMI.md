@@ -23,7 +23,7 @@ Please check [here](http://www.alleft.com/sysadmin/ipmi-sol-inexpensive-remote-c
 ### Note
 * The maximum valid baud rate for the IPMI is 57600bps, though the interface provides the options for 115200bps.
 * Remember to regenerate the `grub.cfg` through GRUB utilities, and _never_ manually modify GRUB related files.
-* In _Shared mode_, IPMI can only function transmit data through NIC 1, though it can receive data on both NIC 1 and NIC 2. While in _Fail back_, incoming data stream will be directed to NIC 2 when NIC 1 failed to function properly. The [source](http://lists.us.dell.com/pipermail/linux-poweredge/2006-September/027244.html) of this information.
+* In _Shared mode_, IPMI can only transmit data through NIC 1, though it can receive data on both NIC 1 and NIC 2. While in _Fail back_, incoming data stream will be directed to NIC 2 when NIC 1 failed to function properly. The [source](http://lists.us.dell.com/pipermail/linux-poweredge/2006-September/027244.html) of this information.
 
 # How to use IPMI
 ## Access serial console
