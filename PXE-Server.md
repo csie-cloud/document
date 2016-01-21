@@ -2,10 +2,14 @@
 
 [Reference](http://www.unixmen.com/install-pxe-server-centos-7/)
 
+## Prequisite
+
 Install packages required
 ````
 yum install dhcp tftp tftp-server syslinux wget vsftpd
 ````
+
+## DHCP Server
 
 Edit `/etc/dhcp/dhcpd.conf`
 ````
@@ -40,6 +44,13 @@ filename "pxelinux.0";
 }
 ````
 
+In `/etc/sysconfig/dhcpd` add
+````
+DHCPDARGS="eth0";
+````
+
+## TFTP Server
+
 Enable tftp server. In `/etc/xinetd.d/tftp`
 ````
 disable                 = no
@@ -58,6 +69,7 @@ cp -v /usr/share/syslinux/chain.c32 /tftpboot
 mkdir /tftpboot/pxelinux.cfg
 mkdir -p /tftpboot/netboot/
 ````
+
 
 Mount image to ftp (with SELinux on)
 ````
@@ -81,6 +93,8 @@ MENU LABEL CentOS 7 X64
 KERNEL /netboot/vmlinuz
 APPEND  initrd=/netboot/initrd.img  inst.repo=ftp://172.16.217.140/pub  ks=ftp://172.16.217.140/ks.cfg
 ````
+
+## Kickstart
 
 Use anaconda-ks.cfg as kickstart config file. 
 ````
