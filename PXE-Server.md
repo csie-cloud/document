@@ -44,7 +44,7 @@ filename "pxelinux.0";
 }
 ````
 
-In `/etc/sysconfig/dhcpd` add
+To specify which interface to listen to, in `/etc/sysconfig/dhcpd` add
 ````
 DHCPDARGS="eth0";
 ````
