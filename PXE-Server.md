@@ -1,21 +1,14 @@
-# PXE Server
+# Why
 We need PXE server to deploy the OS to bare metals on the rack. BIOS of each machine is preconfigured to use their designated NIC through either IPMI or direct interface with the interface. Rest of the steps are based on [this](http://geekface.ca/fedora/?q=pxe) tutorial.
 
+# How
 ## Prequisite
-Install packages required
-````
-yum install dhcp tftp-server syslinux vsftpd
-````
+Use the following command to install the required packages.  
+`yum install dhcp tftp-server syslinux vsftpd`
 
-## DHCP Server
-
-Edit `/etc/dhcp/dhcpd.conf`
-````
-# DHCP Server Configuration file.
-#   see /usr/share/doc/dhcp*/dhcpd.conf.example
-#   see dhcpd.conf(5) man page
-#
-# option definitions common to all supported networks...
+## Setup the DHCP service
+Edit `/etc/dhcp/dhcpd.conf` to contain the following lines at the beginning.
+```
 ddns-update-style interim;
 ignore client-updates;
 
@@ -23,35 +16,38 @@ authoritative;
 allow booting;
 allow bootp;
 allow unknown-clients;
+```
 
-# A slightly different configuration for an internal subnet.
-subnet 172.16.217.0 netmask 255.255.0.0 {
-range 172.16.217.141 172.16.217.154;
+Next, we have to designate the details of our internal network.
+```
+subnet 10.0.1.0 netmask 255.255.255.0 {
+        range 10.0.1.100 10.0.1.150;
 
-option domain-name-servers 140.112.30.12;
-option domain-name-servers 140.112.30.21;
-option domain-name-servers 8.8.8.8;
-option routers 172.16.0.1;
+        option domain-name-servers 10.0.1.250;
+        option routers 10.0.1.250;
 
-default-lease-time 600;
-max-lease-time 7200;
+        default-lease-time 600;
+        max-lease-time 7200;
 
-# PXE SERVER IP
-next-server 172.16.217.140; #  DHCP server ip ( Creator-Dev )
-filename "pxelinux.0";
+        # PXE SERVER IP
+        next-server 10.0.1.250; # DHCP server ip (Creator-Dev)
+        filename "pxelinux.0";
 }
-````
+```
 
 To specify which interface to listen to, in `/etc/sysconfig/dhcpd` add
-````
-DHCPDARGS="eno2";
-````
+```
+DHCPDARGS=eno2
+```
 
-For better safety, block DHCP on `eno1`
-```` 
-iptables -I INPUT -i eno1 -p udp --dport 67 --sport 68 -j DROP
-iptables -I OUTPUT -o eno1 -p udp --dport 68 --sport 67 -j DROP
-````
+### Note
+In our environment, we are sharing a switch with rest of the machines in R215. If the DHCP packets leak to the actual production environment, we are risking ruin every machines. Therefore, we enforced some rules using `iptables`, to block the DHCP packets on `eno2`.
+```
+iptables -I INPUT -i eno2 -p udp --dport 67 --sport 68 -j DROP
+iptables -I OUTPUT -o eno2 -p udp --dport 68 --sport 67 -j DROP
+```
+Though, after reviewing the dump from `iptables`, the rules aren't there... Anyway, I'll leave it here.
+
 ## TFTP Server
 
 Enable tftp server. In `/etc/xinetd.d/tftp`
