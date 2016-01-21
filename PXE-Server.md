@@ -1,11 +1,10 @@
 # PXE Server
-~~[Reference](http://www.unixmen.com/install-pxe-server-centos-7/)~~ This reference is obsolete, not to mention some of its articles use _super_ unsafe method to configure the service. Use this [one](http://geekface.ca/fedora/?q=pxe) instead.
+We need PXE server to deploy the OS to bare metals on the rack. BIOS of each machine is preconfigured to use their designated NIC through either IPMI or direct interface with the interface. Rest of the steps are based on [this](http://geekface.ca/fedora/?q=pxe) tutorial.
 
 ## Prequisite
-
 Install packages required
 ````
-yum install dhcp tftp tftp-server syslinux wget vsftpd
+yum install dhcp tftp-server syslinux vsftpd
 ````
 
 ## DHCP Server
