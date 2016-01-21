@@ -51,8 +51,8 @@ DHCPDARGS="eno2";
 
 For better safety, block DHCP on `eno1`
 ```` 
-iptables -A INPUT -i eno1 -p udp --dport 67 --sport 68 -j DROP
-iptables -A OUTPUT -o eno1 -p udp --dport 68 --sport 67 -j DROP
+iptables -I INPUT -i eno1 -p udp --dport 67 --sport 68 -j DROP
+iptables -I OUTPUT -o eno1 -p udp --dport 68 --sport 67 -j DROP
 ````
 ## TFTP Server
 
