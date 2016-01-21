@@ -46,9 +46,14 @@ filename "pxelinux.0";
 
 To specify which interface to listen to, in `/etc/sysconfig/dhcpd` add
 ````
-DHCPDARGS="eth0";
+DHCPDARGS="eno2";
 ````
 
+For better safety, block DHCP on `eno1`
+```` 
+iptables -A INPUT -i eno1 -p udp --dport 67 --sport 68 -j DROP
+iptables -A OUTPUT -o eno1 -p udp --dport 68 --sport 67 -j DROP
+````
 ## TFTP Server
 
 Enable tftp server. In `/etc/xinetd.d/tftp`
