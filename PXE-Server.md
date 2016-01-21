@@ -1,6 +1,6 @@
 # PXE Server
-
-[Reference](http://www.unixmen.com/install-pxe-server-centos-7/)
+~~[Reference](http://www.unixmen.com/install-pxe-server-centos-7/)~~ This reference is obsolete, not to mention some of its articles use _super_ unsafe method to configure the service.  
+Use this [one](http://geekface.ca/fedora/?q=pxe) instead.
 
 ## Prequisite
 
