@@ -6,6 +6,17 @@ Compass require figlet (to show "Compass"). But default repo doesn't include it 
 wget http://pkgs.repoforge.org/figlet/figlet-2.2.2-1.el6.rf.x86_64.rpm
 yum install figlet-2.2.2-1.el6.rf.x86_64.rpm
 ````
+## Fix Compass install script
+In `compass-core/install/prepare.sh`, commands like
+````
+sudo systemctl restart mysql.service
+sudo systemctl status mysql.service
+````
+should be replaced with
+````
+sudo systemctl restart mariadb.service
+sudo systemctl status mariadb.service
+````
 
 ## Install Compass
 ````
@@ -46,8 +57,10 @@ Please enter the nameserver_reverse_zones (Example: unused):
 
 Default nameserver_reverse_zones 'unused' chosen
 Please enter the web_source (Example: http://git.openstack.org/openstack/compass-web):
-https://github.com/openstack/compass-web
-You have entered https://github.com/openstack/compass-web
+
+You have entered http://git.openstack.org/openstack/compass-web
 Please enter the adapters_source (Example: https://gerrit.opnfv.org/gerrit/compass4nfv):
-https://github.com/openstack/compass-adapters
+
 ````
+
+Installation log can be found at in `./install.log`
