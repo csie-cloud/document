@@ -18,6 +18,13 @@ sudo systemctl restart mariadb.service
 sudo systemctl status mariadb.service
 ````
 
+In `compass-core/install/install_func.sh`
+Insert `mkdir $destdir` before line 233 
+
+Install module for apache
+````
+yum install mod_ssl
+````
 ## Install Compass
 ````
 yum -y install git
