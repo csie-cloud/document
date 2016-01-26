@@ -20,19 +20,31 @@ allow unknown-clients;
 
 Next, we have to designate the details of our internal network.
 ```
-subnet 10.0.1.0 netmask 255.255.255.0 {
-        range 10.0.1.100 10.0.1.150;
+allow booting;
+allow bootp;
+allow unknown-clients;
 
-        option domain-name-servers 10.0.1.250;
-        option routers 10.0.1.250;
+# A slightly different configuration for an internal subnet.
+subnet 10.0.0.0 netmask 255.255.255.0 {
+	# range 10.0.0.100 10.0.0.249;
 
-        default-lease-time 600;
-        max-lease-time 7200;
+	option domain-name-servers 10.0.0.250;
+	option routers 10.0.0.250;
 
-        # PXE SERVER IP
-        next-server 10.0.1.250; # DHCP server ip (Creator-Dev)
-        filename "pxelinux.0";
+	default-lease-time 600;
+	max-lease-time 7200;
+
+    host Controller0{
+         hardware ethernet f0:4d:a2:0a:50:2f;
+         fixed-address 10.0.0.200;
+         option host-name "Controller0";
+    }             
+
+	# PXE SERVER IP
+	next-server 10.0.0.250; # DHCP server ip (Creator-Dev)
+	filename "pxelinux.0";
 }
+
 ```
 
 To specify which interface to listen to, in `/etc/sysconfig/dhcpd` add
