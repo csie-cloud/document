@@ -1,6 +1,7 @@
 
 ## Install figlet manually
 
+Compass require figlet (to show "Compass"). But default repo doesn't include it and neither is Rpoforge. Therefore, we have to install it manually. 
 ````
 wget http://pkgs.repoforge.org/figlet/figlet-2.2.2-1.el6.rf.x86_64.rpm
 yum install figlet-2.2.2-1.el6.rf.x86_64.rpm
