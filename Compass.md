@@ -25,6 +25,12 @@ Install module for apache
 ````
 yum install mod_ssl
 ````
+
+Install Epel
+````
+yum install epel-release
+````
+
 ## Install Compass
 ````
 yum -y install git
