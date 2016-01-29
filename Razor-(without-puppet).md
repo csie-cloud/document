@@ -46,9 +46,75 @@ To verify configuration, run
 psql -l -U razor razor_prd
 ````
 
+Make postgresql start when server is up
+````
+systemctl enable razor-server
+````
+
 ## Install razor
 
-## Install PXE
+Install razor server
+````
+yum install http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+yum install razor-server
+````
+
+Set production database url in `/etc/razor/config.yaml`. The url should look like `jdbc:postgresql:razor?user=razor&password=mypass`. Also, check the variable `repo_store_root`.
+
+Make a directory for razor's broker.
+````
+mkdir /var/lib/razor/brokers
+````
+
+Initialize database for razor
+````
+razor-admin -e production migrate-database
+````
+
+Start razor
+````
+systemctl start razor-server
+systemctl enable razor-server
+````
+
+Download the microkernel in `$repo-store` (the variabable in `/etc/razor/config.yaml`)
+````
+cd /var/lib/razor/repo-store/
+curl -L http://links.puppetlabs.com/razor-microkernel-latest.tar -o razor-microkernel-latest.tar
+tar xvf razor-microkernel-latest.tar 
+rm -f razor-microkernel-latest.tar
+````
+
+## Prepare the TFTP server
+
+Install TFTP server
+````
+yum install tftp-server
+````
+
+Download kPXE firmware
+````
+cd /var/lib/tftpboot
+curl http://boot.ipxe.org/undionly.kpxe -o undionly.kpxe
+````
+
+Make the iPXE file 
+````
+curl http://127.0.0.1:8150/api/microkernel/bootstrap?nic_max=4 -o bootstrap.ipxe
+````
+
+To make sure each NIC can get IP by DHCP, add `goto dhcp_net1` in section `:dhcp_net0`, and so on (for 4 sections).
+
+Start and enable tftp
+````
+systemctl start tftp
+systemctl enable tftp
+````
 
 ## Install DHCP
+````
+yum install dhcp -y 
+````
+refer to wiki of DHCP for configuration.
 
+## Install Razor client 
