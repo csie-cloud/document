@@ -118,3 +118,47 @@ yum install dhcp -y
 refer to wiki of DHCP for configuration.
 
 ## Install Razor client 
+
+Install ruby first
+````
+yum -y install ruby
+gem install razor-client
+````
+
+## Make Repo
+
+````
+razor delete-repo --name centos7-default
+razor create-repo --name centos7-default --iso-url http://centos.cs.nctu.edu.tw/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso --task centos/7
+````
+
+## Deploy Configuration 
+
+Creator Broker
+````
+razor create-broker --name puppet --broker-type puppet --configuration server=192.168.217.250
+````
+
+Create tag
+````
+razor create-tag --name controller --rule '["=", ["fact", "productname"], "PowerEdge R610"]'
+````
+
+Create policy. First, write policy json file
+````json
+{
+  "name": "centos7-default",
+  "repo": "centos7-minimal-1511",
+  "task": "centos/7",
+  "broker": "puppet",
+  "enabled": true,
+  "hostname": "controller${id}",
+  "root_password": "--iscrypted hashed_secret",
+  "max_count": 3,
+  "tags": ["controller"]
+}
+````
+Then run
+````
+razor create-policy --json policy.json 
+````
