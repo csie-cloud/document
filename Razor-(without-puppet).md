@@ -132,7 +132,7 @@ razor delete-repo --name centos7-default
 razor create-repo --name centos7-default --iso-url http://centos.cs.nctu.edu.tw/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso --task centos/7
 ````
 
-## Deploy Configuration 
+## Deployment Configuration 
 
 Creator Broker
 ````
