@@ -1,3 +1,5 @@
+The setting below make dhcp update DNS dynamicly.
+
 # DHCP setting
 
 DHCP setting is in `/etc/dhcp/dhcpd.conf`
