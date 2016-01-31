@@ -127,3 +127,22 @@ zone "217.168.192.in-addr.arpa" IN {
 # include "/etc/named.root.key";
 include "/etc/rndc.key";
 ````
+
+
+`/var/named/zones/cloud.csie.ntu.edu.tw.zone`
+````
+$ORIGIN .
+$TTL 86400	; 1 day
+cloud.csie.ntu.edu.tw	IN SOA	dns.cloud.csie.ntu.edu.tw. cloud.csie.ntu.edu.tw. (
+				2016013020 ; serial
+				21600      ; refresh (6 hours)
+				3600       ; retry (1 hour)
+				604800     ; expire (1 week)
+				86400      ; minimum (1 day)
+				)
+			NS	dns.cloud.csie.ntu.edu.tw.
+$ORIGIN cloud.csie.ntu.edu.tw.
+$TTL 86400	; 1 day
+creator			CNAME	dns
+dns			A	192.168.217.250
+````
