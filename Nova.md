@@ -18,6 +18,19 @@ server clock.stdtime.gov.tw
 server tick.stdtime.gov.tw
 ````
 
+## Install rabbitmq on the controller node
+
+Refer to [official document](http://docs.openstack.org/liberty/install-guide-rdo/environment-messaging.html). 
+
+To specify the IP that RabbitMQ listen to, in `/etc/rabbitmq/rabbitmq.conf`
+````
+[
+  {rabbit, [
+    {tcp_listeners, [{"10.0.217.200", 5672}]}
+  ]}
+].
+````
+
 ## Prepare openstack
 
 Enable openstack repository
