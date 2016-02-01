@@ -55,6 +55,7 @@ admin_password=[openstack glance user password]
 admin_tenant_name=service
 
 ````
+** `admin_tenant_name` should be set to `service`!!!! ** (Otherwise authentication will faill!!)
 
 # Fail step
 
