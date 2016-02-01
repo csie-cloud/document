@@ -7,7 +7,7 @@ Install as [openstack install guide](http://docs.openstack.org/liberty/install-g
 
 For configuration, also follow the guide. Except some variables:
 In `/etc/glance/glance-api.conf`
-````
+````ini
 [keystone_authtoken]
 ...
 auth_uri = http://controller:5000
@@ -36,7 +36,7 @@ admin_tenant_name=service
 ````
 
 In `/etc/glance-registry.conf`
-````
+````ini
 # Instead of setting auth_url
 identity_uri=http://controller:35357
 
@@ -59,21 +59,4 @@ admin_tenant_name=service
 * **`admin_tenant_name` should be set to `service`!!!!** 
  (Otherwise authentication will faill!!)
 * Error message `No handlers could be found for logger "oslo_config.cfg"` can be ignored.
-
-
-# Fail step
-
-````
-# glance-manage db_sync glance
-No handlers could be found for logger "oslo_config.cfg"
-````
-````
-glance image-create --name "cirros" \
-  --file cirros-0.3.4.img \
-  --disk-format qcow2 --container-format bare \
-  --visibility public --progress
-
-503 Service Unavailable: The server is currently unavailable. Please try again at a later time. (HTTP 503)
-
-````
 
