@@ -38,11 +38,21 @@ identity_uri=http://controller:35357
 # project_domain_id = default
 # user_domain_id = default
 # project_name = service
+````
 
 # Fail step
 
 ````
 # glance-manage db_sync glance
 No handlers could be found for logger "oslo_config.cfg"
+````
+````
+glance image-create --name "cirros" \
+  --file cirros-0.3.4.img \
+  --disk-format qcow2 --container-format bare \
+  --visibility public --progress
+
+503 Service Unavailable: The server is currently unavailable. Please try again at a later time. (HTTP 503)
+
 ````
 
