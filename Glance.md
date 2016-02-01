@@ -11,7 +11,9 @@ In `/etc/glance/glance-api.conf`
 [keystone_authtoken]
 ...
 auth_uri = http://controller:5000
-auth_url = http://controller:35357
+
+# Instead of setting auth_url
+identity_uri=http://controller:35357
 
 # set auth_strategy instead of auth_plugin
 auth_strategy = password
