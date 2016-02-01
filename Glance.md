@@ -55,8 +55,11 @@ admin_password=[openstack glance user password]
 admin_tenant_name=service
 
 ````
- **`admin_tenant_name` should be set to `service`!!!!** 
-(Otherwise authentication will faill!!)
+### Note
+* **`admin_tenant_name` should be set to `service`!!!!** 
+ (Otherwise authentication will faill!!)
+* Error message `No handlers could be found for logger "oslo_config.cfg"` can be ignored.
+
 
 # Fail step
 
