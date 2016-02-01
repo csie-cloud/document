@@ -8,18 +8,26 @@ Set up interfaces with VLAN...
 ````
 yum install chrony
 ````
-** Maybe more configuration is needed. **
+
+In `/etc/chrony`, use Taiwan NTP servers
+````
+server tock.stdtime.gov.tw
+server watch.stdtime.gov.tw
+server time.stdtime.gov.tw
+server clock.stdtime.gov.tw     
+server tick.stdtime.gov.tw
+````
 
 ## Prepare openstack
 
 Enable openstack repository
-````
+````bash
 yum install centos-release-openstack-liberty
 yum upgrade
 ````
 
 Install Openstack related packages
-````
+````sh
 yum install python-openstackclient
 yum install openstack-selinux
 ````
@@ -33,7 +41,7 @@ yum install openstack-nova-compute sysfsutils
 
 ## Config Nova
 Edit `/etc/nava/nova.conf`, uncomment the lines
-````
+````ini
 rpc_backend = rabbit
 
 auth_strategy=keystone
@@ -41,7 +49,7 @@ auth_strategy=keystone
 
 ````
 
-````
+````ini
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = RABBIT_PASS
