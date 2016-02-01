@@ -22,13 +22,17 @@ auth_strategy = password
 # project_domain_id = default
 # user_domain_id = default
 # project_name = service
+# Set those instead
+# Service username. (string value)
+admin_user=glance
 
-# set admin_user and admin_password instead of user and password
-admin_user = glance
-admin_password = GLANCE_PASS
+# Service user password. (string value)
+admin_password=[openstack glance user password]
 
-# It is not asked to set.  
-region_name=RegionOne
+# Service tenant name. (string value)
+admin_tenant_name=service
+
+
 ````
 
 In `/etc/glance-registry.conf`
@@ -40,6 +44,16 @@ identity_uri=http://controller:35357
 # project_domain_id = default
 # user_domain_id = default
 # project_name = service
+# Set those instead
+# Service username. (string value)
+admin_user=glance
+
+# Service user password. (string value)
+admin_password=[openstack glance user password]
+
+# Service tenant name. (string value)
+admin_tenant_name=service
+
 ````
 
 # Fail step
