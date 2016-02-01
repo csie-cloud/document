@@ -3,7 +3,7 @@
 
 Install glance on controller.
 
-Install as (openstack install guide)[http://docs.openstack.org/liberty/install-guide-rdo/glance-install.html].
+Install as [openstack install guide](http://docs.openstack.org/liberty/install-guide-rdo/glance-install.html).
 
 For configuration, also follow the guide. Except some variables:
 In `/etc/glance/glance-api.conf`
