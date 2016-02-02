@@ -14,6 +14,9 @@ admin_password = openstack_neutron
 admin_tenant_name = service
 ````
 
+In section `[neutron]` in `/etc/nova/nova.conf`, set neither `domain_id` nor `domain_name`.
+
+
 When setting up [option 2](http://docs.openstack.org/liberty/install-guide-rdo/neutron-controller-install-option2.html), in `/etc/neutron/neutron.conf`, the `[nova]` section only set
 ````ini
 auth_plugin = password
