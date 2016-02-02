@@ -45,4 +45,10 @@ admin_user = neutron
 admin_password = [openstack neutron password]
 ````
 
-
+# Bug fixing!
+````
+chown neutron /var/lib/neutron/tmp/
+chown neutron /var/lib/neutron/tmp/*
+chogrp neutron /var/lib/neutron/tmp/
+chogrp neutron /var/lib/neutron/tmp/*
+````
