@@ -31,6 +31,20 @@ To specify the IP that RabbitMQ listen to, in `/etc/rabbitmq/rabbitmq.conf`
 ].
 ````
 
+## Make a hole on the firewall
+On both the controller node and the compute node, edit the file `/etc/sysconfig/network-scripts/ifcfg-[dev name]` of internal network. **(The device may be `management` rather than `enp4s0.2`)**. Add one line
+````
+ZONE=internal
+````
+
+And run:
+````
+systemctl restart network
+firewall-cmd --permanent --zone=internal --add-interface=management
+firewall-cmd --permanent --zone=internal --add-port 5672/tcp
+firewall-cmd --reload
+```` 
+
 ## Prepare openstack
 
 Enable openstack repository
