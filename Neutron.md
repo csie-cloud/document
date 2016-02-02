@@ -21,6 +21,14 @@ auth_plugin = password
 
 On compute, in `/etc/nova/nova.conf`, in the `[neutron]` section, only set
 ````ini
+# Set flag to indicate Neutron will proxy metadata requests and resolve
+# instance ids. (boolean value)
+service_metadata_proxy=true
+
+# Shared secret to validate proxies Neutron metadata requests (string value)
+metadata_proxy_shared_secret = 024ccc26a55059755d04
+
+
 url=http://controller:9696
 ````
 
