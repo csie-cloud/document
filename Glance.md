@@ -2,6 +2,7 @@
 On both compute node and the controller. 
 ````
 firewall-cmd --add-port 9696/tcp --zone=internal --permanent
+firewall-cmd --reload
 ````
 
 # Glance
