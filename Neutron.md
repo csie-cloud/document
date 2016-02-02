@@ -32,4 +32,14 @@ metadata_proxy_shared_secret = 024ccc26a55059755d04
 url=http://controller:9696
 ````
 
+In `/etc/neutron/neutron.conf` on the compute node,
+````ini
+[keystone_authtoken]
+auth_uri = http://controller:35357/
+identity_uri = http://controller:5000
+admin_tenant_name = service
+admin_user = neutron
+admin_password = [openstack neutron password]
+````
+
 
