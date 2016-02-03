@@ -38,10 +38,13 @@ ZONE=internal
 ````
 
 And run:
-````
+````sh
 systemctl restart network
 firewall-cmd --permanent --zone=internal --add-interface=management
 firewall-cmd --permanent --zone=internal --add-port 5672/tcp
+
+# For dashboard vnc
+firewall-cmd --permanent --zone=public --add-port 6080/tcp
 firewall-cmd --reload
 ```` 
 
