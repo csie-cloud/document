@@ -17,12 +17,9 @@ admin_tenant_name = service
 In section `[neutron]` in `/etc/nova/nova.conf`, set neither `domain_id` nor `domain_name`.
 
 
-When setting up [option 2](http://docs.openstack.org/liberty/install-guide-rdo/neutron-controller-install-option2.html), in `/etc/neutron/neutron.conf`, the `[nova]` section only set
+When setting up [option 2](http://docs.openstack.org/liberty/install-guide-rdo/neutron-controller-install-option2.html), in `/etc/neutron/neutron.conf`, the `[nova]` section set 
 ````ini
 auth_plugin = password
-````
-**Update**
-````
 auth_url = http://controller:35357
 project_domain_id = default
 user_domain_id = default
@@ -31,7 +28,8 @@ project_name = service
 username = nova
 password = [openstack nova password]
 ````
-are also needed!!!
+(though those variables are not in the template configuration file)
+
 On compute, in `/etc/nova/nova.conf`, in the `[neutron]` section, only set
 ````ini
 # Set flag to indicate Neutron will proxy metadata requests and resolve
