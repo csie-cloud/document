@@ -1,6 +1,10 @@
 # Cloud
- 
 ## Architecture
+* [Architecture](https://github.com/csie-cloud/wiki/wiki/Architecture)
+* [Creator]()
+* [Controler Nodes]()
+* [Compute Nodes]()
+* [Storage Nodes]()
 
 ## Tutorial
 * [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
