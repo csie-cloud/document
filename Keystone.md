@@ -146,3 +146,47 @@ This project will serve for all the services in this cloud.
 `openstack user create --domain default --password-prompt demo`  
 `openstack role create user`  
 `openstack role add --project admin --user demo user`
+
+## Wrap up
+### Clean the ass
+Remove `admin_token_auth` from the following sections.
+* `[pipeline:public_api]`
+* `[pipeline:admin_api]`
+* `[pipeline:api_v3]`
+
+### Remove global variable
+`unset OS_TOKEN OS_URL`
+
+###  Request authentication tokens
+Use this for administrative operations.  
+`openstack --os-auth-url http://controller1-admin:35357/v3 --os-project-domain-id default --os-user-domain-id default --os-project-name admin --os-username admin --os-auth-type password token issue`  
+
+Use this for general purpose operations.  
+`openstack --os-auth-url http://controller1:5000/v3 --os-project-domain-id default --os-user-domain-id default --os-project-name demo --os-username demo --os-auth-type password token issue`
+
+### Ease our life
+Create `admin-openrc.sh` and `demo-openrc.sh` to load appropriate credentials for client operations.  
+```
+export OS_PROJECT_DOMAIN_ID=default
+export OS_USER_DOMAIN_ID=default
+export OS_PROJECT_NAME=admin
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=ADMIN_PASS
+export OS_AUTH_URL=http://controller1-admin:35357/v3
+export OS_IDENTITY_API_VERSION=3
+```
+```
+export OS_PROJECT_DOMAIN_ID=default
+export OS_USER_DOMAIN_ID=default
+export OS_PROJECT_NAME=demo
+export OS_TENANT_NAME=demo
+export OS_USERNAME=demo
+export OS_PASSWORD=DEMO_PASS
+export OS_AUTH_URL=http://controller1:5000/v3
+export OS_IDENTITY_API_VERSION=3
+```
+
+To use the script, `source` them then request for token.  
+`source admin-openrc.sh`  
+`openstack token issue`
