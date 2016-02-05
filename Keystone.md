@@ -116,3 +116,16 @@ Note: `ServerAlias` for `controller1` and `controller1-int` are added for differ
 `export OS_IDENTITY_API_VERSION=3`
 
 Note: The `OS_URL` should use the administration network.
+
+### Create the service
+`openstack service create --name keystone --description "OpenStack Identity" identity`
+
+### Create endpoints
+Public  
+`openstack endpoint create --region RegionOne identity public http://controller1:5000/v2.0`  
+
+Internal
+`openstack endpoint create --region RegionOne identity internal http://controller1-int:5000/v2.0`  
+
+Administration
+`openstack endpoint create --region RegionOne identity admin http://controller1-admin:35357/v2.0`  
