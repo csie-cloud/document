@@ -129,3 +129,20 @@ Internal
 
 Administration
 `openstack endpoint create --region RegionOne identity admin http://controller1-admin:35357/v2.0`  
+
+## Create projects, users and roles
+### Administrative operations
+`openstack project create --domain default --description "Admin Project" admin`  
+`openstack user create --domain default --password-prompt admin`  
+`openstack role create admin`  
+`openstack role add --project admin --user admin admin`
+
+### Services
+This project will serve for all the services in this cloud.
+`openstack project create --domain default --description "Service Project" service`
+
+### Demo
+`openstack project create --domain default --description "Demo Project" demo`  
+`openstack user create --domain default --password-prompt demo`  
+`openstack role create user`  
+`openstack role add --project admin --user demo user`
