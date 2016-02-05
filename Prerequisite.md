@@ -48,8 +48,8 @@ Run `mysql_secure_installation` to secure the database service.
 `systemctl start rabbitmq-server`
 
 ### Create user
-Create a user for the OpenStack service.
+Create a user for the OpenStack service.  
 `rabbitmqctl add_user openstack RABBIT_PASS`  
 
-Set the permission to configuration, read and write.
-`rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+Set the permission to configuration, read and write.  
+`rabbitmqctl set_permissions openstack ".*" ".*" ".*"`
