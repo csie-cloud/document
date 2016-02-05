@@ -108,3 +108,11 @@ Note: `ServerAlias` for `controller1` and `controller1-int` are added for differ
 ### Start the service
 `systemctl enable httpd`  
 `systemctl start httpd`
+
+## Create service entity and API endpoints
+### Setup reusable variables
+`export OS_TOKEN=ADMIN_TOKEN`  
+`export OS_URL=http://controller1-admin:35357/v3`  
+`export OS_IDENTITY_API_VERSION=3`
+
+Note: The `OS_URL` should use the administration network.
