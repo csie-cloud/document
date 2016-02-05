@@ -15,7 +15,7 @@ Install the OpenStack client and SELinux package to manage the service and the s
 
 Note: This can take awhile, be patient.
 
-## SQL Database
+## SQL database
 ### Install
 We are going to use the same database as most of the tutorials on the Internet.  
 `yum install mariadb mariadb-server MySQL-python`
@@ -31,3 +31,25 @@ collation-server = utf8_general_ci
 init-connect = 'SET NAMES utf8'
 character-set-server = utf8
 ```
+
+### Start the service
+`systemctl enable mariadb`  
+`systemctl start mariadb`
+
+### Preconfigure the database
+Run `mysql_secure_installation` to secure the database service.
+
+## Message queue
+### Install
+`yum install rabbitmq-server`
+
+### Start the service
+`systemctl enable rabbitmq-server`  
+`systemctl start rabbitmq-server`
+
+### Create user
+Create a user for the OpenStack service.
+`rabbitmqctl add_user openstack RABBIT_PASS`  
+
+Set the permission to configuration, read and write.
+`rabbitmqctl set_permissions openstack ".*" ".*" ".*"
