@@ -1,3 +1,7 @@
+# Architecture reference
+[Mirantis Example archirtecture](https://docs.mirantis.com/openstack/fuel/fuel-7.0/reference-architecture.html#ref-arch)
+
+# DVR reference
 [gitbook written in simplified Chinese](https://www.gitbook.com/book/yeasy/openstack_understand_neutron/details)
 
 [The gitbook above seems to come from a so call "ice house summit"](https://docs.google.com/document/d/1iXMAyVMf42FTahExmGdYNGOBFyeA4e74sAO3pvr_RjA/mobilebasic)
