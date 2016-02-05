@@ -23,6 +23,7 @@
 ### Tutorial
 * [PXE Server](https://github.com/csie-cloud/wiki/wiki/PXE Server)
 * [Packstack](https://github.com/csie-cloud/wiki/wiki/Packstack)
+* [Compass](https://github.com/csie-cloud/wiki/wiki/Neutron-%22Modern%22-architecture-references)
 
 
 ## References
