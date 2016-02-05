@@ -35,3 +35,9 @@ In the `[token]` section, configure the UUID token provider and the memcached dr
 
 In the `[revoke]` section, configure the SQL revocation driver.  
 `driver = sql`  
+
+### Apply
+Populate the Identity service database.  
+`su -s /bin/sh -c "keystone-manage db_sync" keystone`  
+
+## Apache HTTP server
