@@ -16,7 +16,7 @@ Start the `memcached` service.
 `systemctl enable memcached`  
 `systemctl start memcached`  
 
-## Configure
+## Configure Keystone
 Edit `/etc/keystone/keystone.conf` and complete the following section.  
 
 In the `[DEFAULT]` section, define the administration token and enable the verbose output.
@@ -97,3 +97,7 @@ Listen 35357
     </Directory>
 </VirtualHost>
 ```
+
+### Start the service
+`systemctl enable httpd`  
+`systemctl start httpd`
