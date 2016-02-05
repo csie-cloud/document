@@ -24,7 +24,7 @@ In the `[DEFAULT]` section, define the administration token and enable the verbo
 `verbose = True`  
 
 In the `[database]` section, configure the database access.  
-`connection = mysql://keystone:KEYSTONE_DBPASS@controller1/keystone`  
+`connection = mysql://keystone:KEYSTONE_DBPASS@controller1-int/keystone`  
 
 In the `[memcache]` section, configure the service.  
 `servers = localhost:11211`  
@@ -43,7 +43,9 @@ Populate the Identity service database.
 ## Apache HTTP server
 ### Server name
 Edit `/etc/httpd/conf/httpd.conf` and configure the `ServerName` option to reference this controller node.  
-`ServerName controller1`  
+`ServerName controller1-admin`  
+
+Note: The server name here points to the primary access URI, therefore, it should be `controller1-admin`, since it has the most privileges.
 
 ### The WSGI content
 Create `/etc/httpd/conf.d/wsgi-keystone.conf` with the following content.  
@@ -52,6 +54,9 @@ Listen 5000
 Listen 35357
 
 <VirtualHost *:5000>
+    ServerAlias controller1
+    ServerAlias controller1-int
+
     WSGIDaemonProcess keystone-public processes=5 threads=1 user=keystone group=keystone display-name=%{GROUP}
     WSGIProcessGroup keystone-public
     WSGIScriptAlias / /usr/bin/keystone-wsgi-public
@@ -97,6 +102,8 @@ Listen 35357
     </Directory>
 </VirtualHost>
 ```
+
+Note: `ServerAlias` for `controller1` and `controller1-int` are added for different level of endpoint to access port 5000.
 
 ### Start the service
 `systemctl enable httpd`  
