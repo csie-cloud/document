@@ -10,6 +10,7 @@
 ## In progress
 ### Openstack
 * [Neutron](https://github.com/csie-cloud/wiki/wiki/Neutron)
+* [Glance](https://github.com/csie-cloud/wiki/wiki/Glance)
 * [Nova](https://github.com/csie-cloud/wiki/wiki/Nova)
 
 
