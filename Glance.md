@@ -26,6 +26,49 @@ Internal
 Administration
 `openstack endpoint create --region RegionOne image admin http://controller1-admin: 9292`  
 
+## Install
+`yum install openstack-glance python-glance python-glanceclient`
+
+## Configure
+### API
+Edit `/etc/glance/glance-api.conf` to the following contents.  
+
+In the `[database]` section, modify `connection`,  
+`connection = mysql://glance:GLANCE_DBPASS@controller1-int/glance`  
+
+In the `[keystone_authtoken]` section, modify  
+`auth_uri = http://controller1:5000`  
+`admin_user = glance`  
+`admin_password = GLANCE_PASS`  
+`admin_tenant_name = service`  
+
+In the `[DEFAULT]` section, modify
+`auth_strategy = password`  
+`notification_driver = noop`  
+
+In the `[paste_deploy]` section, modify  
+`flavor = keystone`  
+
+In the `[glance_store]` section, modify  
+`default_store = file`  
+`filesystem_store_datadir = /var/lib/glance/images/`  
+
+### Registry
+Edit `/etc/glance/glance-registry.conf` to the following contents.  
+
+In the `[database]` section, modify `connection`,  
+`connection = mysql://glance:GLANCE_DBPASS@controller1-int/glance`  
+
+## Start the service
+Sync the database first.
+`su -s /bin/sh -c "glance-manage db_sync" glance`
+If `unknown locale` occurs, set the locale and retry.
+`export LC_ALL=en_US.UTF-8`  
+`export LANG=en_US.UTF-8`  
+
+`systemctl enable openstack-glance-api`  
+`systemctl start openstack-glance-api`  
+
 ## Make a hole the the firewall
 On both compute node and the controller. 
 ````
