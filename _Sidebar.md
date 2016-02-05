@@ -14,7 +14,14 @@
 
 
 ## Deprecated
+
+# Architecture
 * [Architecture](https://github.com/csie-cloud/wiki/wiki/Architecture)
+* [Overview](https://github.com/csie-cloud/wiki/wiki/Overview)
+
+# Tutorial
+* [PXE Server](https://github.com/csie-cloud/wiki/wiki/PXE Server)
+* [Packstack](https://github.com/csie-cloud/wiki/wiki/Packstack)
 
 
 ## References
