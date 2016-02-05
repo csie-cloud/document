@@ -66,9 +66,10 @@ If `unknown locale` occurs, set the locale and retry.
 `export LC_ALL=en_US.UTF-8`  
 `export LANG=en_US.UTF-8`  
 
-`systemctl enable openstack-glance-api`  
-`systemctl start openstack-glance-api`  
+`systemctl enable openstack-glance-api openstasck-glance-registry`  
+`systemctl start openstack-glance-api openstack-glance-registry`  
 
+# Deprecate 
 ## Make a hole the the firewall
 On both compute node and the controller. 
 ````
