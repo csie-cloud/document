@@ -24,7 +24,7 @@ We are going to use the same database as most of the tutorials on the Internet.
 Create a file `/etc/my.cnf.d/mariadb_openstack.cnf` with the following content.  
 ```
 [mysqld]
-bind-address = 10.42.0.240
+bind-address = controller1-int
 default-storage-engine = innodb
 innodb_file_per_table
 collation-server = utf8_general_ci
