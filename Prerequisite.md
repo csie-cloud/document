@@ -32,6 +32,8 @@ init-connect = 'SET NAMES utf8'
 character-set-server = utf8
 ```
 
+Note: The database is bind to `controller1-int` since it shall be able to access through internal network.
+
 ### Start the service
 `systemctl enable mariadb`  
 `systemctl start mariadb`
