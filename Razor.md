@@ -1,3 +1,14 @@
+## Introduction to Razor
+
+Razor can be seen as a manager of PXE boot service. It can install different OS, using different installation configuration, performing different post-install script by some facts of the client host. The mechanism of it is
+* Boot client machine with a microkernel.
+* The microkernel will tell razor the facts (hardware informantion) of the client machine.
+* Razor give the machine "tags" by the facts of them. The criterial of the tags is defined by yourself. For example, we defined a tag "poweredge_1950". Machines will get this tag if its fact "productname" is "Poweredge 1950".
+* A policy is enforced on the server with specific tag. Policy is also defined by yourself. A policy including properties like hostname, "task", "broker", and so on. You can also decide the policy should work on what tags.
+* The "task" is performed. The task is usually installing an OS on the host.
+* A post-installation script is run to install the "broker". "Broker" is the configuration management appliction like Puppet. The installation script of broker can be customized by yourself.     
+
+
 ## Install postgresql
 
 [reference](https://wiki.postgresql.org/wiki/YUM_Installation)
