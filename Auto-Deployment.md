@@ -15,20 +15,20 @@ Puppet is a centrallized configuration management tool. The server that holds al
 
 ### Before Puppet can take over
 
-The complex configuration dedicated to openstack services are done by Puppet. Howerver, before Puppet can manage those configurations, there must be a proper enviroment with
-* Machines with hosts installed.
+The complex configuration dedicated to openstack services are done by Puppet. Howerver, before Puppet can manage those configurations, some requirements must be satisfied:
+* Machines with OSs installed.
 * Installed puppet agent on nodes to be deployed.
 * DNS, DDNS services as the requirement of Puppet.
 
-Partially because of the third requirement, we arranges IP address ranges for different kinds of servers. For example, compute servers should use IP address from `xxx.xxx.xxx.200` to `xxx.xxx.xxx.240`. Therefore, our DNS service on Creator can hard code the relation between IP address and hostname. For example, `xxx.xxx.xxx.200` corresponds to `controller1`, and `xxx.xxx.xxx.235` correspond to `compute36`. A reamain problem is that, how to let server get correct IP address. That will be solve by razor as described below. 
+Partially because of the third requirement, we arranges IP address ranges for different kinds of servers. For example, compute servers should use IP address from `xxx.xxx.xxx.200` to `xxx.xxx.xxx.240`. Therefore, our DNS service on Creator can hard code the relation between IP address and hostname. For example, `xxx.xxx.xxx.200` corresponds to `controller1`, and `xxx.xxx.xxx.235` correspond to `compute36`. A reamain problem is that, how to let server get correct IP address? That will be solve by razor as described below. 
 
-After installation of OS, Razor executes the post installation script to install puppet agent. We do some customization to the script:
+After installation of OS, Razor executes the post installation script to install puppet agent. We do some customization for the script:
 
 1. Modify the repository link to get Puppet 4.3.
 2. Config IP address to correct one according to hostname, which is assigned by Razor.
 3. Add creator to `/etc/hosts` so puppet agent can talk with puppet master.
 
-After the stage, DHCP service is never required. Therefore, the DHCP service only provide temporary ip address for PXE boot.
+After the stage, DHCP service is never required. Therefore, the DHCP service only provide temporary ip addresses for PXE boot.
 
 
 
