@@ -69,6 +69,19 @@ If `unknown locale` occurs, set the locale and retry.
 `systemctl enable openstack-glance-api openstasck-glance-registry`  
 `systemctl start openstack-glance-api openstack-glance-registry`  
 
+# Verification
+## Setup the API version
+Setup the API version for image service.
+`echo "export OS_IMAGE_API_VERSION=2" | tee -a admin-openrc.sh demo-openrc.sh`
+
+## Upload the image
+We take CirrOS as the test image.
+`curl http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img -o /tmp/cirros.img`  
+`glance image-create --name "cirrus" --file /tmp/cirros.img --disk-format qcow2 --container-format bare --visibility public --progress`  
+
+## Check the result
+`glance image-list`  
+
 # Deprecate 
 ## Make a hole the the firewall
 On both compute node and the controller. 
