@@ -9,7 +9,7 @@
 ## Tutorial
 * [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
 * [DHCP DNS](https://github.com/csie-cloud/wiki/wiki/DNS-DHCP)
-* [IPMI](https://github.com/csie-cloud/wiki/wiki/DNS-DHCP)
+* [IPMI](https://github.com/csie-cloud/wiki/wiki/IPMI)
 
 ## In progress
 ### Openstack
