@@ -1,7 +1,7 @@
 # Cloud
 ## Architecture
 * [Architecture](https://github.com/csie-cloud/wiki/wiki/Architecture)
-* [Creator](https://github.com/csie-cloud/wiki/wiki/Auto-deployment)
+* [Auto-Deployment](https://github.com/csie-cloud/wiki/wiki/Auto-deployment)
 * [Controler Nodes]()
 * [Compute Nodes]()
 * [Storage Nodes]()
