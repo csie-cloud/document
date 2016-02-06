@@ -1,4 +1,4 @@
-## Introduction to Razor
+# Introduction to Razor
 
 Razor can be seen as a manager of PXE boot service. It can install different OS, using different installation configuration, performing different post-install script by some facts of the client host. The mechanism of it is
 * Boot client machine with a microkernel.
@@ -8,7 +8,7 @@ Razor can be seen as a manager of PXE boot service. It can install different OS,
 * The "task" is performed. The task is usually installing an OS on the host.
 * A post-installation script is run to install the "broker". "Broker" is the configuration management appliction like Puppet. The installation script of broker can be customized by yourself.     
 
-
+# Installation
 ## Install postgresql
 
 [reference](https://wiki.postgresql.org/wiki/YUM_Installation)
