@@ -1,5 +1,41 @@
-# Prerequite
+## Prerequisites
+### Create user in database
+Enter the database on the controller.  
+`mysql -u root -p`  
 
+Create the `glance` database with appropriate permissions.  
+`CREATE DATABASE nova;`  
+`GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' IDENTIFIED BY 'NOVA_DBPASS';`  
+`GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'NOVA_DBPASS';`
+
+### Create projects and users
+Source the administrator credential.   
+`source admin-openrc.sh`  
+
+Create the user and add it to `admin` role and the `service` project.  
+`openstack role add --project service --user nova admin`  
+`openstack service create --name nova --description "OpenStack Compute" compute`  
+
+### Create endpoints
+Public  
+`openstack endpoint create --region RegionOne compute public http://controller1:8774/v2/%\(tenant_id\)s`  
+
+Internal  
+`openstack endpoint create --region RegionOne compute internal http://controller1-int:8774/v2/%\(tenant_id\)s`  
+
+Administration  
+`openstack endpoint create --region RegionOne compute admin http://controller1-admin:8774/v2/%\(tenant_id\)s`  
+
+## Install
+Go to the compute node.
+### Enable the repo
+`yum install centos-release-openstack-liberty`  
+`yum upgrade`  
+
+Install Openstack related packages.
+`yum install python-openstackclient openstack-selinux`  
+
+# Deprecate
 ## Set up network
 
 Set up interfaces with VLAN...
@@ -50,17 +86,6 @@ firewall-cmd --reload
 
 ## Prepare openstack
 
-Enable openstack repository
-````bash
-yum install centos-release-openstack-liberty
-yum upgrade
-````
-
-Install Openstack related packages
-````sh
-yum install python-openstackclient
-yum install openstack-selinux
-````
 
 # Nova
 
@@ -98,4 +123,3 @@ admin_password=[openstack glance user password]
 # Service tenant name. (string value)
 admin_tenant_name=service
 ```
-
