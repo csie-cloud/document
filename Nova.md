@@ -143,10 +143,6 @@ to enable QEMU instead of KVM.
 `systemctl start libvirtd openstack-nova-compute`
 
 # Deprecate
-## Set up network
-
-Set up interfaces with VLAN...
-
 ## Install NTP client
 ````
 yum install chrony
@@ -161,11 +157,8 @@ server clock.stdtime.gov.tw
 server tick.stdtime.gov.tw
 ````
 
-## Install rabbitmq on the controller node
-
-Refer to [official document](http://docs.openstack.org/liberty/install-guide-rdo/environment-messaging.html). 
-
-To specify the IP that RabbitMQ listen to, in `/etc/rabbitmq/rabbitmq.conf`
+## Specify the IP that RabbitMQ listen to
+In `/etc/rabbitmq/rabbitmq.conf`
 ````
 [
   {rabbit, [
@@ -190,10 +183,3 @@ firewall-cmd --permanent --zone=internal --add-port 5672/tcp
 firewall-cmd --permanent --zone=public --add-port 6080/tcp
 firewall-cmd --reload
 ```` 
-
-# Nova
-
-## Install Nova
-````
-yum install openstack-nova-compute sysfsutils
-````
