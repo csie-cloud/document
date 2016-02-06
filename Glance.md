@@ -12,7 +12,7 @@ Create the `glance` database with appropriate permissions.
 Source the administrator credential.   
 `source admin-openrc.sh`  
 
-Create the user and add it to `admin` role and the `service` project.
+Create the user and add it to `admin` role and the `service` project.  
 `openstack role add --project service --user glance admin`  
 `openstack service create --name glance --description "OpenStack Image Service" image`  
 
@@ -20,13 +20,13 @@ Create the user and add it to `admin` role and the `service` project.
 Public  
 `openstack endpoint create --region RegionOne image public http://controller1:9292`  
 
-Internal
+Internal  
 `openstack endpoint create --region RegionOne image internal http://controller1-int: 9292`  
 
-Administration
+Administration  
 `openstack endpoint create --region RegionOne image admin http://controller1-admin: 9292`  
 
-## Install
+## Install  
 `yum install openstack-glance python-glance python-glanceclient`
 
 ## Configure
@@ -38,6 +38,7 @@ In the `[database]` section, modify `connection`,
 
 In the `[keystone_authtoken]` section, modify  
 `auth_uri = http://controller1:5000`  
+`identity_uri = http://controller1-admin:35357`  
 `admin_user = glance`  
 `admin_password = GLANCE_PASS`  
 `admin_tenant_name = service`  
@@ -59,10 +60,23 @@ Edit `/etc/glance/glance-registry.conf` to the following contents.
 In the `[database]` section, modify `connection`,  
 `connection = mysql://glance:GLANCE_DBPASS@controller1-int/glance`  
 
+In the `[keystone_authtoken]` section, modify  
+`auth_uri = http://controller1:5000`  
+`identity_uri = http://controller1-admin:35357`  
+`admin_user = glance`  
+`admin_password = GLANCE_PASS`  
+`admin_tenant_name = service`  
+
+In the `[DEFAULT]` section, modify  
+`notification_driver = noop`  
+
+In the `[paste_deploy]` section, modify  
+`flavor = keystone`  
+
 ## Start the service
-Sync the database first.
-`su -s /bin/sh -c "glance-manage db_sync" glance`
-If `unknown locale` occurs, set the locale and retry.
+Sync the database first.  
+`su -s /bin/sh -c "glance-manage db_sync" glance`  
+If `unknown locale` occurs, set the locale and retry.  
 `export LC_ALL=en_US.UTF-8`  
 `export LANG=en_US.UTF-8`  
 
@@ -71,12 +85,12 @@ If `unknown locale` occurs, set the locale and retry.
 
 # Verification
 ## Setup the API version
-Setup the API version for image service.
+Setup the API version for image service.  
 `echo "export OS_IMAGE_API_VERSION=2" | tee -a admin-openrc.sh demo-openrc.sh`
 
 ## Upload the image
-We take CirrOS as the test image.
-`curl http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img -o /tmp/cirros.img`  
+We take CirrOS as the test image.  
+`curl http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img -o /tmp/cirros.img`   
 `glance image-create --name "cirrus" --file /tmp/cirros.img --disk-format qcow2 --container-format bare --visibility public --progress`  
 
 ## Check the result
