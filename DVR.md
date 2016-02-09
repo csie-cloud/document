@@ -4,7 +4,9 @@ This document assume that you have installed neutron successfully (refer to open
 
 Refer to this [guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html)
 
-## Prequisite
+## Prerequisite
+
+Refer to [this site](http://solomon.ipv6.club.tw/Course/SDN/howto_install_ovs_on_centos7.html) and [openvswitch official github](https://github.com/openvswitch/ovs/blob/master/INSTALL.Fedora.md).
 
 ### Build openvswitch package
 
