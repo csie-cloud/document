@@ -50,12 +50,13 @@ net.ipv4.ip_forward=1
 net.ipv4.conf.default.rp_filter=0
 net.ipv4.conf.all.rp_filter=0
 ````
+====
 
 To load new kernel configuration, run
 ````
 sysctl -p
 ````
-
+====
 Edit `/etc/neutron/l3_agent.ini`, replace `[default]` section with
 ````ini
 [DEFAULT]
@@ -67,6 +68,8 @@ router_delete_namespaces = True
 agent_mode = dvr_snat
 ````
 (it will overwrite `interface_driver = neutron.agent.linux.interface.BridgeInterfaceDriver` )
+
+====
 
 Edit `/etc/neutron/dhcp_agent.ini`, replace `[default]` section with 
 ````ini
@@ -81,6 +84,8 @@ dhcp_delete_namespaces = True
 dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
 ````
 
+====
+
 `/etc/neutron/metadata_agent.ini` has been configured well, so did not touch it.
 
-
+====
