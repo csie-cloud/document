@@ -4,6 +4,35 @@ This document assume that you have installed neutron successfully (refer to open
 
 Refer to this [guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html)
 
+## Prequisite
+
+### Build openvswitch package
+
+(I built the package on Creator)
+
+Install packages for building the package 
+````
+yum install -y rpm-build autoconf openssl-devel python-twisted-core python-zope-interface PyQt4 groff graphviz
+````
+
+Create the directory for building package
+````
+mkdir -p ~/rpmbuild/SOURCES 
+````
+
+Download the LTS version of openvswitch
+````
+cd ~/rpmbuild/SOURCES
+curl http://openvswitch.org/releases/openvswitch-2.3.2.tar.gz -o openvswitch-2.3.2.tar.gz
+tar zxvf openvswitch-2.3.2.tar.gz
+````
+
+Start to build
+````
+cd openvswitch-2.3.2.tar.gz
+rpmbuild -bb rhel/openvswitch-fedora.spec
+````
+
 ## Controller node
 
 Since some configurations have been set in Neutron stage, `/etc/neutron/neutron.conf` need not be modified.
