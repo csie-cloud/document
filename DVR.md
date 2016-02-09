@@ -14,7 +14,7 @@ Refer to [this site](http://solomon.ipv6.club.tw/Course/SDN/howto_install_ovs_on
 
 Install packages for building the package 
 ````
-yum install -y rpm-build autoconf openssl-devel python-twisted-core python-zope-interface PyQt4 groff graphviz
+yum install -y rpm-build autoconf openssl-devel python-twisted-core python-zope-interface PyQt4 groff graphviz gcc kernel-devel
 ````
 
 Create the directory for building package
@@ -29,11 +29,19 @@ curl http://openvswitch.org/releases/openvswitch-2.3.2.tar.gz -o openvswitch-2.3
 tar zxvf openvswitch-2.3.2.tar.gz
 ````
 
-Start to build
+Fix simbolic link first
+````
+ln -s /usr/src/kernels/3.10.0-327.4.5.el7.x86_64/ /lib/modules/3.10.0-327.el7.x86_64/build
+````
+
+Start to build (here I use --with dpdk to enable dhdk support.)
 ````
 cd openvswitch-2.3.2.tar.gz
-rpmbuild -bb rhel/openvswitch-fedora.spec
+rpmbuild --with dpdk -bb rhel/openvswitch-fedora.spec
+rpmbuild -bb -D "kversion 3.10.0-327.el7.x86_64" rhel/openvswitch-kmod-fedora.spec
 ````
+()
+
 
 ## Controller node
 
