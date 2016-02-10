@@ -51,7 +51,11 @@ yum install openvswitch openvswitch-2.3.2-1.el7.centos.x86_64.rpm
 yum install openstack-neutron-openvswitch
 ````
 
-Since some configurations have been set in Neutron stage, `/etc/neutron/neutron.conf` need not be modified.
+In `/etc/neutron/neutron.conf` add one line in `[default]` section make distributed default when creating router
+````ini
+[default]
+router_distributed = True
+````
 
 In `/etc/neutron/plugins/ml2/ml2_conf.ini`
 ````ini 
@@ -237,3 +241,15 @@ Output of `neutron agent-list | grep controller2`
 | edeebdab-539d-41a9-a1fe-dd023cae172c | L3 agent           | controller2 | :-)   | True           | neutron-l3-agent          |
 | fa878b89-702e-422d-91df-6f0c7e1c5ad0 | Open vSwitch agent | controller2 | :-)   | True           | neutron-openvswitch-agent |
 ````
+
+#### Create initial external network
+
+````
+source admin-openrc.sh
+neutron net-create ext-net --router:external   --provider:physical_network public --provider:network_type flat
+neutron subnet-create ext-net 172.16.0.0/16 --allocation-pool   start=172.16.217.100,end=172.16.217.200 --disable-dhcp   --gateway 172.16.0.1
+neutron net-create vm-net --provider:network_type vxlan --tenant-id <id-of-project-demo>
+````
+
+````
+source demo-openrc.sh
