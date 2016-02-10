@@ -18,6 +18,7 @@
 * [Glance](https://github.com/csie-cloud/wiki/wiki/Glance)
 * [Nova](https://github.com/csie-cloud/wiki/wiki/Nova)
 * [Neutron](https://github.com/csie-cloud/wiki/wiki/Neutron)
+  * [DVR](https://github.com/csie-cloud/wiki/wiki/DVR)
 
 ## Deprecated
 
