@@ -249,7 +249,11 @@ source admin-openrc.sh
 neutron net-create ext-net --router:external   --provider:physical_network public --provider:network_type flat
 neutron subnet-create ext-net 172.16.0.0/16 --allocation-pool   start=172.16.217.100,end=172.16.217.200 --disable-dhcp   --gateway 172.16.0.1
 neutron net-create vm-net --provider:network_type vxlan --tenant-id <id-of-project-demo>
+neutron router-create --distributed True gate --tenant-id <id-of-project-demo>
+neutron router-getway-set gate ext-net
+neutron router-gateway-set gate ext-net
 ````
 
-````
-source demo-openrc.sh
+To verify
+
+refer to [official guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html#verify-network-operation)
