@@ -222,4 +222,25 @@ systemctl start openvswitch neutron-openvswitch-agent
 systemctl restart neutron-l3-agent neutron-metadata-agent
 ````
 
+Stop linuxbridge-agent
+````
+systemctl stop neutron-linuxbridge-agent
+````
+
 ## Verify operation
+
+Output of `neutron agent-list | grep compute1`
+````
+| 3ab7d18c-2b35-4163-be33-1f43cecfced2 | Linux bridge agent | compute1    | xxx   | True           | neutron-linuxbridge-agent |
+| 9d17cb81-f05a-4826-9aef-174d2c2200d6 | Open vSwitch agent | compute1    | :-)   | True           | neutron-openvswitch-agent |
+| a1722bde-9367-4005-ad2e-8a93e1b34618 | Metadata agent     | compute1    | :-)   | True           | neutron-metadata-agent    |
+| b101540e-919e-48c8-812a-bf125a350d6f | L3 agent           | compute1    | :-)   | True           | neutron-l3-agent          |
+````
+
+Output of `neutron agent-list | grep controller2`
+````
+| ba6360af-f61d-4ad5-ad2c-05c8ba7a1867 | Metadata agent     | controller2 | :-)   | True           | neutron-metadata-agent    |
+| ea3e50e9-2a8f-46b3-ad11-1dd0d9f1488c | DHCP agent         | controller2 | :-)   | True           | neutron-dhcp-agent        |
+| edeebdab-539d-41a9-a1fe-dd023cae172c | L3 agent           | controller2 | :-)   | True           | neutron-l3-agent          |
+| fa878b89-702e-422d-91df-6f0c7e1c5ad0 | Open vSwitch agent | controller2 | :-)   | True           | neutron-openvswitch-agent |
+````
