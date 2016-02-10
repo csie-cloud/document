@@ -1,6 +1,8 @@
 # DVR
 
-This document assume that you have installed neutron successfully (refer to openstack installation guide). 
+Note:
+* This document assume that you have installed neutron successfully (refer to openstack installation guide). 
+* This document install network node and controller node on single machine.
 
 Refer to this [guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html)
 
@@ -138,3 +140,86 @@ Start and restart some services
 systemctl start openvswitch neutron-openvswitch-agent
 systemctl restart neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
 ````
+
+## Compute node
+
+Install packages
+````
+yum install openvswitch-2.3.2-1.x86_64.rpm
+yum install openstack-neutron-openvswitch
+
+# For openvswitch 
+mkdir /etc/openvswitch
+semanage fcontext -a -t openvswitch_rw_t "/etc/openvswitch(/.*)?"
+restorecon -Rv /etc/openvswitch 
+````
+
+====
+
+Create file `/etc/sysctl.d/50-neutron-dvr.conf`
+````ini
+net.ipv4.ip_forward=1
+net.ipv4.conf.default.rp_filter=0
+net.ipv4.conf.all.rp_filter=0
+net.bridge.bridge-nf-call-iptables=1
+net.bridge.bridge-nf-call-ip6tables=1
+````
+
+To load the kernel configuration, run
+````
+sysctl -p
+````
+====
+
+Create file `/etc/neutron/plugins/ml2/ml2_conf.ini`
+````ini
+[ovs]
+local_ip = 10.42.0.200
+bridge_mappings = vlan:br-vlan,external:br-ex
+
+[agent]
+l2_population = True
+tunnel_types = vxlan # Turn off gre here
+enable_distributed_routing = True
+arp_responder = True
+
+[securitygroup]
+firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+enable_security_group = True
+enable_ipset = True
+````
+
+====
+
+In `/etc/neutron/l3_agent.ini`
+````ini
+[DEFAULT]
+interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver 
+# ^ Default value is empty
+
+use_namespaces = True
+# ^ Uncomment it
+
+external_network_bridge =
+# ^ Original value is br-ex
+
+router_delete_namespaces = True
+# ^ Uncomment it
+
+agent_mode = dvr
+# ^ Default value is legacy
+````
+
+====
+
+`/etc/neutron/metadata_agent.ini` is find, did not modify it.
+
+====
+
+Start and restart some services
+````
+systemctl start openvswitch neutron-openvswitch-agent 
+systemctl restart neutron-l3-agent neutron-metadata-agent
+````
+
+## Verify operation
