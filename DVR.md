@@ -68,9 +68,12 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 enable_security_group = True
 
 # Config sections
+[ml2_type_flat]
+flat_networks = external
+
 [ovs]
 local_ip = 10.42.0.241 # TUNNEL_INTERFACE_IP_ADDRESS
-bridge_mappings = vlan:br-vlan,external:br-ex # External ?
+bridge_mappings = vlan:br-vlan,external:br-ex #
 
 [agent]
 l2_population = True
