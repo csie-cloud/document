@@ -81,13 +81,6 @@ enable_ipset = True
 ````
 
 =====
-Note: can not realize what that means in the guide
-````
-Start the following services:
-
-    Server
-````
-=====
 
 Create file `/etc/sysctl.d/50-neutron-dvr-conf`
 ````ini
@@ -138,7 +131,7 @@ dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
 Start and restart some services
 ````
 systemctl start openvswitch neutron-openvswitch-agent
-systemctl restart neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
+systemctl restart neutron-server neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
 ````
 
 ## Compute node
