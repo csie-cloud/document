@@ -38,13 +38,16 @@ Start to build (here I use --with dpdk to enable dhdk support.)
 ````
 cd openvswitch-2.3.2.tar.gz
 rpmbuild --with dpdk -bb rhel/openvswitch-fedora.spec
-rpmbuild -bb -D "kversion 3.10.0-327.el7.x86_64" rhel/openvswitch-kmod-fedora.spec
 ````
-**Fail here!!!!!!!!!!!!**
-()
-
+It is said that openvswitch has been merged into linux kernel mainline, so building openvswitch kernel module is not needed.
 
 ## Controller node
+
+Install packages 
+````
+yum install openvswitch openvswitch-2.3.2-1.el7.centos.x86_64.rpm
+yum install openstack-neutron-openvswitch
+````
 
 Since some configurations have been set in Neutron stage, `/etc/neutron/neutron.conf` need not be modified.
 
@@ -129,3 +132,9 @@ dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
 `/etc/neutron/metadata_agent.ini` has been configured well, so did not touch it.
 
 ====
+
+Start and restart some services
+````
+systemctl start openvswitch neutron-openvswitch-agent
+systemctl restart neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
+````
