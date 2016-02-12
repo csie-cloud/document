@@ -106,7 +106,7 @@ net.ipv4.conf.all.rp_filter=0
 
 To load new kernel configuration, run
 ````
-sysctl -p
+sysctl -p /etc/sysctl.d/50-neutron-dvr-conf
 ````
 ====
 Edit `/etc/neutron/l3_agent.ini`, replace `[default]` section with
@@ -174,7 +174,7 @@ net.bridge.bridge-nf-call-ip6tables=1
 
 To load the kernel configuration, run
 ````
-sysctl -p
+sysctl -p /etc/sysctl.d/50-neutron-dvr-conf
 ````
 ====
 
