@@ -3,6 +3,7 @@
 Note:
 * This document assume that you have installed neutron successfully (refer to openstack installation guide). 
 * This document install network node and controller node on single machine.
+* The configuration only supports tenant network type VXLAN. Using VLAN may require different configuration. 
 
 Refer to this [guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html)
 
@@ -91,7 +92,17 @@ enable_ipset = True
 
 In `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, config
 ````ini
+[ovs]
+...
+local_ip = 10.42.0.241
 bridge_mappings = external:br-ext
+
+[agent]
+...
+tunnel_types = vxlan
+l2_population = True
+arp_responder = True
+enable_distributed_routing = True
 ````
 
 =====
