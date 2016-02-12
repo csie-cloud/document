@@ -159,6 +159,16 @@ systemctl start openvswitch neutron-openvswitch-agent
 systemctl restart neutron-server neutron-l3-agent neutron-dhcp-agent neutron-metadata-agent
 ````
 
+====
+
+**Open VSwitch bridege `br-ext` have to be created by yourself!!**
+Commands may like this
+````
+ovs-vsctl add-br br-ext
+ovs-vsctl add-port br-ext eth0
+````
+where eth0 is the interface connecting to outside world.
+
 ## Compute node
 
 Install packages
@@ -206,6 +216,24 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 enable_security_group = True
 enable_ipset = True
 ````
+====
+
+
+In `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, config
+````ini
+[ovs]
+...
+local_ip = 10.42.0.200
+#bridge_mappings = external:br-ext
+# ^ don't know if is needed
+[agent]
+...
+tunnel_types = vxlan
+l2_population = True
+arp_responder = True
+enable_distributed_routing = True
+````
+
 
 ====
 
