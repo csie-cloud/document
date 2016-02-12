@@ -169,6 +169,8 @@ ovs-vsctl add-port br-ext eth0
 ````
 where eth0 is the interface connecting to outside world.
 
+Some effort may be need to let the bridges get appropriate IP address.
+
 ## Compute node
 
 Install packages
@@ -224,8 +226,8 @@ In `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, config
 [ovs]
 ...
 local_ip = 10.42.0.200
-#bridge_mappings = external:br-ext
-# ^ don't know if is needed
+bridge_mappings = external:br-ext
+
 [agent]
 ...
 tunnel_types = vxlan
