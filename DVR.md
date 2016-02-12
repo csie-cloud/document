@@ -73,7 +73,7 @@ flat_networks = external
 
 [ovs]
 local_ip = 10.42.0.241 # TUNNEL_INTERFACE_IP_ADDRESS
-bridge_mappings = vlan:br-vlan,external:br-ex #
+bridge_mappings = external:br-ext #
 
 [agent]
 l2_population = True
@@ -85,6 +85,13 @@ arp_responder = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
 enable_security_group = True
 enable_ipset = True
+````
+
+=====
+
+In `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, config
+````
+bridge_mappings = external:br-ext
 ````
 
 =====
@@ -175,7 +182,7 @@ Create file `/etc/neutron/plugins/ml2/ml2_conf.ini`
 ````ini
 [ovs]
 local_ip = 10.42.0.200
-bridge_mappings = vlan:br-vlan,external:br-ex
+bridge_mappings = vlan:br-vlan,external:br-ext
 
 [agent]
 l2_population = True
