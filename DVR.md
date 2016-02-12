@@ -293,6 +293,7 @@ Output of `neutron agent-list | grep controller2`
 
 #### Create initial external network
 
+Commands are like below
 ````
 source admin-openrc.sh
 neutron net-create ext-net --router:external   --provider:physical_network external --provider:network_type flat
@@ -302,6 +303,63 @@ neutron router-create --distributed True gate --tenant-id <id-of-project-demo>
 neutron router-gateway-set gate ext-net
 ````
 
-To verify
+For more detail, refer to [official guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html#verify-network-operation)
 
-refer to [official guide](http://docs.openstack.org/liberty/networking-guide/scenario-dvr-ovs.html#verify-network-operation)
+After an instance connect to the demo subnet, and every thing goes well, then `ovs-vsctl show` should output something like:
+````
+    Bridge br-ext
+        Port phy-br-ext
+            Interface phy-br-ext
+                type: patch
+                options: {peer=int-br-ext}
+        Port br-ext
+            Interface br-ext
+                type: internal
+        Port "eno2"
+            Interface "eno2"
+    Bridge br-int
+        fail_mode: secure
+        Port int-br-ext
+            Interface int-br-ext
+                type: patch
+                options: {peer=phy-br-ext}
+        Port "tap280050a7-91"
+            tag: 5
+            Interface "tap280050a7-91"
+                type: internal
+        Port patch-tun
+            Interface patch-tun
+                type: patch
+                options: {peer=patch-int}
+        Port "sg-1b13faff-40"
+            tag: 5
+            Interface "sg-1b13faff-40"
+                type: internal
+        Port br-int
+            Interface br-int
+                type: internal
+        Port "eno2.42"
+            Interface "eno2.42"
+        Port "qg-5310b590-05"
+            tag: 3
+            Interface "qg-5310b590-05"
+                type: internal
+        Port "qr-85928959-10"
+            tag: 5
+            Interface "qr-85928959-10"
+                type: internal
+    Bridge br-tun
+        fail_mode: secure
+        Port "vxlan-0a2a00c8"
+            Interface "vxlan-0a2a00c8"
+                type: vxlan
+                options: {df_default="true", in_key=flow, local_ip="10.42.0.241", out_key=flow, remote_ip="10.42.0.200"}
+        Port br-tun
+            Interface br-tun
+                type: internal
+        Port patch-int
+            Interface patch-int
+                type: patch
+                options: {peer=patch-tun}
+    ovs_version: "2.3.2"
+````
