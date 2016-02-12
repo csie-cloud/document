@@ -90,7 +90,7 @@ enable_ipset = True
 =====
 
 In `/etc/neutron/plugins/ml2/openvswitch_agent.ini`, config
-````
+````ini
 bridge_mappings = external:br-ext
 ````
 
