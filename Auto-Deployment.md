@@ -54,7 +54,13 @@ All except `password` is on public github repository ([csie-cloud](https://githu
 
 ### Using r10k
 
-We use r10k to help us do version control. One thing need to be mension is that, since r10k does not resolve depence automatically for the modules specified in Puppetfile, a tool may be needed to generate module dependencies. The tool used for now is [generate-puppetfile](https://github.com/rnelson0/puppet-generate-puppetfile). The basic usage is simple:
+We use r10k to help us do version control. One thing need to be mensioned is that, since r10k does not resolve dependency automatically for the modules specified in Puppetfile, a tool may be needed to generate module dependencies. The tool used for now is [generate-puppetfile](https://github.com/rnelson0/puppet-generate-puppetfile). The basic usage is simple:
 ````
 generate-puppetfile openstack/keystone razorsedge/network
 ````
+
+### Creating module
+
+Use `puppet module generate 217-<module-name>`
+
+I use `217` as author.
