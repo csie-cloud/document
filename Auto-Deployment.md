@@ -33,5 +33,28 @@ After installation of OS, Razor executes the post installation script to install
 
 After the stage, DHCP service is never required. Therefore, the DHCP service only provide temporary ip addresses for PXE boot.
 
+### After Puppet take over
 
+Puppet will configure network interfaces permanently as well as set up services on the machine.
 
+## Work with Puppet
+
+### code architecture
+
+* The main manifest is on repository [csie-cloud/cloud](https://github.com/csie-cloud/cloud)
+* Each category of node (eg. controller, compute, ...) is a module.
+* Where should be network configuration be placed in has not been decided. 
+Temporarily, it is put in the main manifest. But we may have some choices
+  * Put in an dedicated module, and use Hiera to decide which host to use which configuration. 
+  * Put in an dedicated module, and use some `if`, `else`, `case` to decide which host to use which configuration.
+  * As part of each node module.
+* An dedicated module `password` that only contains password.
+
+All except `password` is on public github repository ([csie-cloud](https://github.com/csie-cloud/)). The dedicated module `password` is to collect all sensitive information, so other repository can be public.
+
+### Using r10k
+
+We use r10k to help us do version control. One thing need to be mension is that, since r10k does not resolve depence automatically for the modules specified in Puppetfile, a tool may be needed to generate module dependencies. The tool used for now is [generate-puppetfile](https://github.com/rnelson0/puppet-generate-puppetfile). The basic usage is simple:
+````
+generate-puppetfile openstack/keystone razorsedge/network
+````
