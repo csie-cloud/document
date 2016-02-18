@@ -9,7 +9,7 @@
 ## Tutorial
 * [DHCP DNS](https://github.com/csie-cloud/wiki/wiki/DNS-DHCP)
 * [IPMI](https://github.com/csie-cloud/wiki/wiki/IPMI)
-* [Puppet](https://github.com/csie-cloud/wiki/wiki/Work-with-Puppet)
+* [Puppet](https://github.com/csie-cloud/wiki/wiki/Puppet)
    * [r10k](https://github.com/csie-cloud/wiki/wiki/r10k)
 * [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
 
