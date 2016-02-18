@@ -7,9 +7,10 @@
 * [Storage Nodes]()
 
 ## Tutorial
-* [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
 * [DHCP DNS](https://github.com/csie-cloud/wiki/wiki/DNS-DHCP)
 * [IPMI](https://github.com/csie-cloud/wiki/wiki/IPMI)
+* [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
+* [Work with Puppet](https://github.com/csie-cloud/wiki/wiki/Work-with-Puppet)
 
 ## In progress
 ### Openstack
@@ -30,7 +31,7 @@
 * [PXE Server](https://github.com/csie-cloud/wiki/wiki/PXE Server)
 * [Packstack](https://github.com/csie-cloud/wiki/wiki/Packstack)
 * [Compass](https://github.com/csie-cloud/wiki/wiki/Neutron-%22Modern%22-architecture-references)
-* [Work with Puppet](https://github.com/csie-cloud/wiki/wiki/Work-with-Puppet)
+
 
 ## References
 * [Architecture](https://github.com/csie-cloud/wiki/wiki/Neutron-%22Modern%22-architecture-references)
