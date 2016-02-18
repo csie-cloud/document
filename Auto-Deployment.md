@@ -11,6 +11,9 @@ Refer to our [razor wiki](https://github.com/csie-cloud/wiki/wiki/Razor)
 ### Puppet
 Puppet is a centrallized configuration management tool. The server that holds all the configuration is called the Puppet master, while the server controlled by Puppet master is called Puppet agent. Puppet agent request for new configuration form Puppet master periodical and apply the configuration to the host the agent runs on. Puppet master can give out different configuration to different agent according to some criteria.
 
+### r10k
+r10k is a tool that help us manage the Puppet manifests and modules with git. r10k makes deploy from git automatically. Each module can be store in a repository, in which there is a file `Puppetfile` specifying the dependency. The most attractive part is that, those dependencies can be a few git repository. Therefore, after you set up the repository of the main repository, to deploy, a sigle command `r10k deploy environment -p` will pull down all the modules we wrote! Another feature of r10k is that r10k will set up environments for each branch. So it is possible to set up a "test" environment without affecting the production one. 
+
 ## How auto-deployment works
 
 ### Before Puppet can take over
