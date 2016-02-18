@@ -64,4 +64,3 @@ puppet agent -t
 This command can also be used to trigger an update.
  
 
- 
