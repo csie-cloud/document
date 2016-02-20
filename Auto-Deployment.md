@@ -21,6 +21,7 @@ The complex configuration dedicated to openstack services are done by Puppet. Ho
 * Machines with OSs installed.
 * Installed puppet agent on nodes to be deployed.
 * DNS, DDNS services as the requirement of Puppet.
+* Got correct IP that corrresponds to the records in DNS.
 
 Partially because of the third requirement, we arranges IP address ranges for different kinds of servers. For example, compute servers should use IP address from `xxx.xxx.xxx.200` to `xxx.xxx.xxx.240`. Therefore, our DNS service on Creator can hard code the relation between IP address and hostname. For example, `xxx.xxx.xxx.200` corresponds to `controller1`, and `xxx.xxx.xxx.235` correspond to `compute36`. A reamain problem is that, how to let server get correct IP address? That will be solve by razor as described below. 
 
