@@ -42,11 +42,7 @@ Puppet will configure network interfaces permanently as well as set up services 
 
 * The main manifest is on repository [csie-cloud/cloud](https://github.com/csie-cloud/cloud)
 * Each category of node (eg. controller, compute, ...) is a module.
-* Where should be network configuration be placed in has not been decided. 
-Temporarily, it is put in the main manifest. But we may have some choices
-  * Put in an dedicated module, and use Hiera to decide which host to use which configuration. 
-  * Put in an dedicated module, and use some `if`, `else`, `case` to decide which host to use which configuration.
-  * As part of each node module.
+* Network interface is configured using an isolated module `network_config`. In the module, it determine what kind of configuration to be used by machine product name. (A list of productname -> configuration is stored in Hieradata, which is a argument of module `network_config`.) 
 * An dedicated module `password` that only contains password.
 
 All except `password` is on public github repository ([csie-cloud](https://github.com/csie-cloud/)). The dedicated module `password` is to collect all sensitive information, so other repository can be public.
