@@ -1,38 +1,37 @@
 # Cloud
 ## Architecture
-* [Architecture](https://github.com/csie-cloud/wiki/wiki/Architecture)
-* [Auto-Deployment](https://github.com/csie-cloud/wiki/wiki/Auto-deployment)
+* [Architecture](Architecture/Architecture.md)
+* [Auto-Deployment](Architecture/Auto-deployment.md)
 * [Controler Nodes]()
 * [Compute Nodes]()
 * [Storage Nodes]()
 
 ## Tutorial
-* [DHCP DNS](https://github.com/csie-cloud/wiki/wiki/DNS-DHCP)
-* [IPMI](https://github.com/csie-cloud/wiki/wiki/IPMI)
-* [Puppet](https://github.com/csie-cloud/wiki/wiki/Puppet)
-   * [r10k](https://github.com/csie-cloud/wiki/wiki/r10k)
-* [Razor](https://github.com/csie-cloud/wiki/wiki/Razor)
+* [DHCP DNS](Tutorial/DNS-DHCP.md)
+* [IPMI](Tutorial/IPMI.md)
+* [Puppet](Tutorial/Puppet.md)
+   * [r10k](Tutorial/Puppet/r10k.md)
+* [Razor](Tutorial/Razor.md)
 
-## In progress
 ### Openstack
-* [Prerequisite](https://github.com/csie-cloud/wiki/wiki/Prerequisite)
-* [Keystone](https://github.com/csie-cloud/wiki/wiki/Keystone)
-* [Glance](https://github.com/csie-cloud/wiki/wiki/Glance)
-* [Nova](https://github.com/csie-cloud/wiki/wiki/Nova)
-* [Neutron](https://github.com/csie-cloud/wiki/wiki/Neutron)
-  * [DVR](https://github.com/csie-cloud/wiki/wiki/DVR)
+* [Prerequisite](Tutorial/Openstack/Prerequisite.md)
+* [Keystone](Tutorial/Openstack/Keystone.md)
+* [Glance](Tutorial/Openstack/Glance.md)
+* [Nova](Tutorial/Openstack/Nova.md)
+* [Neutron](Tutorial/Openstack/Neutron.md)
+  * [DVR](Tutorial/Openstack/Neutron/DVR.md)
 
 ## Deprecated
 
 ### Architecture
-* [Architecture](https://github.com/csie-cloud/wiki/wiki/Architecture)
-* [Overview](https://github.com/csie-cloud/wiki/wiki/Overview)
+* [Architecture](Deprecated/Architecture/Architecture.md)
+* [Overview](Deprecated/Architecture/Overview.md)
 
 ### Tutorial
-* [PXE Server](https://github.com/csie-cloud/wiki/wiki/PXE Server)
-* [Packstack](https://github.com/csie-cloud/wiki/wiki/Packstack)
-* [Compass](https://github.com/csie-cloud/wiki/wiki/Neutron-%22Modern%22-architecture-references)
+* [PXE Server](Deprecated/Tutorial/PXE Server.md)
+* [Packstack](Deprecated/Tutorial/Packstack.md)
+* [Compass](Deprecated/Tutorial/Neutron-%22Modern%22-architecture-references.md)
 
 
 ## References
-* [Architecture](https://github.com/csie-cloud/wiki/wiki/Neutron-%22Modern%22-architecture-references)
+* [Architecture](Reference/Neutron-%22Modern%22-architecture-references.md)
