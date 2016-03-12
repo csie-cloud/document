@@ -2,7 +2,7 @@
 The architecture refer to [mirantis's example architecture](https://docs.mirantis.com/openstack/fuel/fuel-7.0/reference-architecture.html)
 
 ## Network architecture
-![Architecture](http://csie-cloud.github.io/wiki/images/arch-dvr.svg?)
+![Architecture](http://csie-cloud.github.io/document/images/arch-dvr.svg?)
 
 There are four networks in the system.
 * Management
