@@ -15,12 +15,12 @@
 * [Razor](Tutorial/Razor.md)
 
 ### Openstack
-* [Prerequisite](Tutorial/Openstack/Prerequisite.md)
-* [Keystone](Tutorial/Openstack/Keystone.md)
-* [Glance](Tutorial/Openstack/Glance.md)
-* [Nova](Tutorial/Openstack/Nova.md)
-* [Neutron](Tutorial/Openstack/Neutron.md)
-  * [DVR](Tutorial/Openstack/Neutron/DVR.md)
+* [Prerequisite](Tutorial/Openstack Installation/Prerequisite.md)
+* [Keystone](Tutorial/Openstack Installation/Keystone.md)
+* [Glance](Tutorial/Openstack Installation/Glance.md)
+* [Nova](Tutorial/Openstack Installation/Nova.md)
+* [Neutron](Tutorial/Openstack Installation/Neutron.md)
+  * [DVR](Tutorial/Openstack Installation/Neutron/DVR.md)
 
 ## Deprecated
 
