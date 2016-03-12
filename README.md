@@ -1,7 +1,7 @@
 # Cloud
 ## Architecture
 * [Architecture](Architecture/Architecture.md)
-* [Auto-Deployment](Architecture/Auto-deployment.md)
+* [Auto-Deployment](Architecture/Auto-Deployment.md)
 * [Controler Nodes]()
 * [Compute Nodes]()
 * [Storage Nodes]()
@@ -24,14 +24,14 @@
 ## Deprecated
 
 ### Architecture
-* [Architecture](Deprecated/Architecture/Architecture.md)
+* [Architecture](Deprecated/Architecture/Architecture-\(Deprecated\).md)
 * [Overview](Deprecated/Architecture/Overview.md)
 
 ### Tutorial
-* [PXE Server](Deprecated/Tutorial/PXE Server.md)
+* [PXE Server](Deprecated/Tutorial/PXE-Server.md)
 * [Packstack](Deprecated/Tutorial/Packstack.md)
-* [Compass](Deprecated/Tutorial/Neutron-%22Modern%22-architecture-references.md)
+* [Compass](Deprecated/Tutorial/Compass.md)
 
 
 ## References
-* [Architecture](Reference/Neutron-%22Modern%22-architecture-references.md)
+* [Architecture](Reference/Neutron-"Modern"-architecture-references.md)
