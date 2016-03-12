@@ -11,6 +11,7 @@
 * [IPMI](Tutorial/IPMI.md)
 * [Puppet](Tutorial/Puppet.md)
    * [r10k](Tutorial/Puppet/r10k.md)
+   * [coding note](Tutorial/Puppet/Coding Note.md)
 * [Razor](Tutorial/Razor.md)
 
 ### Openstack
