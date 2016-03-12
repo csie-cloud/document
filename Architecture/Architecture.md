@@ -20,7 +20,7 @@ This network is for PXE boot, IPMI and Puppet service when auto deployment. Each
 
 ### Management Network
 
-This network is for inter-communication between openstack services as well tunnled traffic form compute instances. We plan to use VXLAN for the tunneling.
+This network is for communication between openstack components as well tunnled traffic form compute instances. We plan to use VXLAN for the tunneling.
 
 ### Public Network
 
@@ -30,13 +30,15 @@ This network is VLAN 7 of CSIE, which connect to CISE's NAT. This network provid
 
 This network carries  Ceph replication traffic. 
 
-## Hostnames
-We encounter a problem while configurating those service. All services, including those for deploying, for storage, for inner API calls, refer other servers with hostname. If each server have only one hostname, and each hostname of course corresponding to single IP, then all service will communicate with each other in single network. For example, both Puppet, Nova-compute may referred "controller1" to controller host. So, in our DNS zone file, there have to be a record correspond "controller1" to an IP address, say 192.168.217.240, the IP of administration network. So the traffic between both "Puppet-Master, Pupper-Agent" and "Nova-compute, Keystone" go through the administration network. That's fine for Puppet, since the administration network is there for Puppet. Howerver, the traffic between Nova-compute and Keystone should goes through Management network. 
-Therefore, we come up a solution: more than one hostname (FQDN) may refer to a single server, but each hostname corresponds to a logical network interface (such as virtual interface for VLAN tag). The rule is that,
-* the hostname used in administration network is
-  * `creator` if the host is creator, since creator only connect to administration network.
-  * `xxx${id}-ipmi` if it is a ipmi interface
-  * `xxx-host${id}`. Ex. `compute-host1`.
-* the hostname used in administration network is `xxx${id}`. Ex. `compute1`.
-* In public network, only few hosts require hostname, and the hostnames are public.
+## Hostname
 
+Each  refer to an interface. And since a host often has three or four interface, multiple FQDN refer to a host. That is because we want traffic of different kinds of service goes on the network they should go on. Take `compute1` as example, our naming rule is that:
+  * `compute1`: interface connecting to public network. (172.16.217.0/16)
+  * `compute1-int`: interface connecting to management (internal) network. (10.42.0.0/24)
+  * `compute1-admin`: interface connecting to administration network. (192.168.217.0/24)
+  * `compute1-storage`: interface connecting to storage network. (10.41.0.0/24)
+So when config openstack message service that exchange message between components like neutron, nova, url should be the internal one. While API endpoints or dashboard interface url should be the public one.
+
+## Domain name
+
+Our domain name is `cloud.csie.ntu.edu.tw`.
