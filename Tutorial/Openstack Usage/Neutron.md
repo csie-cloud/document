@@ -11,3 +11,13 @@ neutron subnet-create --name demo-subnet demo-net 10.0.0.0/24
 neutron router-interface-add demo-router demo-subnet
 neutron router-gateway-set demo-router ext-net
 ````
+
+To clean the networks
+
+````
+neutron router-gateway-clear demo-router
+router-interface-delete demo-router demo-subnet
+neutron router-delete demo-router
+neutron net-delete ext-net
+neutron net-delete demo-net
+````
