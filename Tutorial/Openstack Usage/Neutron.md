@@ -16,7 +16,7 @@ To clean the networks
 
 ````
 neutron router-gateway-clear demo-router
-router-interface-delete demo-router demo-subnet
+neutron router-interface-delete demo-router demo-subnet
 neutron router-delete demo-router
 neutron net-delete ext-net
 neutron net-delete demo-net
