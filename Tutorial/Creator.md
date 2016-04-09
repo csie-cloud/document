@@ -26,14 +26,6 @@ pupept config set server <hostname of deploy node>
 
 Also install r10k as [this guide](https://github.com/csie-cloud/document/blob/master/Tutorial/r10k.md#install-and-confugure).
 
-Note that the repo source in `/etc/puppetlab/r10k/r10k.yaml` should be 
-````yaml
-:sources:
-  :204-deploy:
-    remote: 'https://github.com/csie-cloud/204-testsite'
-    basedir: '/etc/puppetlabs/code/environments'
-````
-
 ## Pull dowm the Puppet script
 
 
